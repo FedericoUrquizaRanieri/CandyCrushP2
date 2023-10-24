@@ -1,0 +1,25 @@
+Movimientos
+Tiempo(00:00)
+ObjetivosVerdes
+ObjetivosAmarillos
+ObjetivosRosa
+ObjetivosNaranjas
+ObjetivosRojos
+ObjetivosAzules
+ObjetivosMerengues
+ObjetivosGelatina
+ObjetivoEnvuelto
+CaramelosEnGrilla:
+Caramelo Verde=1
+Caramelo Amarillo=2
+Caramelo Rosa=3
+Caramelo Naranja=4
+Caramelo Rojo=5
+Caramelo Azul=6
+Merengue/Glaseado/Bedrock=7
+Gelatina con Verde=A
+Gelatina con Amarillo=B
+Gelatina con Rosa=C
+Gelatina con Naranja=D
+Gelatina con Rojo=E
+Gelatina con Azul=F
