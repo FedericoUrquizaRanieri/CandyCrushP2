@@ -2,11 +2,12 @@ package Entidad;
 
 import GUI.EntidadGrafica;
 import Tablero.Tablero;
+import utils.Utils;
 
 public class Caramelo extends Entidad{
 
     public Caramelo(int f, int c, Color color){
-        super(f,c,"Candy Crush/Imagenes/Caramelos/"+ color.toString().toLowerCase()+".png");
+        super(f,c,"Candy Crush/Imagenes/"+Utils.skin+"/Caramelos/"+ color.toString().toLowerCase()+".png");
         this.color = color;
     }
 

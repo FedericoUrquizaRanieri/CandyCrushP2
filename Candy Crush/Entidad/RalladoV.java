@@ -1,13 +1,14 @@
 package Entidad;
 
 import Tablero.Tablero;
+import utils.Utils;
 
 public class RalladoV extends Caramelo{
     boolean explotando;
     public RalladoV(int f, int c, Color color){
         super(f, c, color);
         this.explotando = false;
-        imagePath="Candy Crush/Imagenes/Rayados/RayadosV/"+ color.toString().toUpperCase()+".png";
+        imagePath="Candy Crush/Imagenes/"+Utils.skin+"/Rayados/RayadosV/"+ color.toString().toUpperCase()+".png";
     }
     public void destruirse(Tablero t){
         if(!explotando) {

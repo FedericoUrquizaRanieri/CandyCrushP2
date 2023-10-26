@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 import Entidad.Color;
 import Juego.Juego;
+import utils.Utils;
 
 public class Nivel{
     //Atributos
@@ -62,7 +63,7 @@ public class Nivel{
             vidas=3;
         }
         else{
-            icono = new ImageIcon("Candy Crush/Imagenes/Extras/NivelPerdido.png");
+            icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/NivelPerdido.png");
             JOptionPane.showMessageDialog(null, "Perdiste el nivel", "Felicidades", JOptionPane.PLAIN_MESSAGE, icono);
             miJuego.regenerar(nivel);
         }

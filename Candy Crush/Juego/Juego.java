@@ -7,6 +7,7 @@ import javax.swing.*;
 import GUI.GUI;
 import Nivel.Nivel;
 import Tablero.Tablero;
+import utils.Utils;
 import Entidad.Color;
 import GUI.EntidadGrafica;
 
@@ -73,17 +74,17 @@ public class Juego{
     public int NivelActual(){
         return miNivel.getNivel();
     }
-
+    
     public void animacionesTerminadas(){
         if(miNivel.objetivosTerminados()){
             miNivel.setNivel(NivelActual()+1);
             if(miNivel.getNivel() != 6){
                 regenerar(NivelActual());
-                ImageIcon icono = new ImageIcon("Candy Crush/Imagenes/Extras/creeper.gif");
+                ImageIcon icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/NivelGanado.gif");
                 JOptionPane.showMessageDialog(null, "Pasaste de nivel", "Felicidades", JOptionPane.PLAIN_MESSAGE, icono);
             }
             else{
-                ImageIcon icono = new ImageIcon("Candy Crush/Imagenes/Extras/Rana.gif");
+                ImageIcon icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/JuegoGanado.gif");
                 JOptionPane.showMessageDialog(null, "Finalizaste el juego", "Felicidades", JOptionPane.PLAIN_MESSAGE, icono);
                 miGUI.setVisible(false);
                 miGUI.dispatchEvent(new WindowEvent(miGUI, WindowEvent.WINDOW_CLOSING));

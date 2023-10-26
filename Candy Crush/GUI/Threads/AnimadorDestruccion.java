@@ -19,7 +19,7 @@ public class AnimadorDestruccion extends Thread implements Animador{
     }
 
     public void run() {
-        ImageIcon ico = new ImageIcon("Candy Crush/Imagenes/Extras/Explosion.png");
+        ImageIcon ico = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/Explosion.png");
         Image img = ico.getImage();
         Image new_img = img.getScaledInstance(Utils.labelWidth, Utils.labelHeight, Image.SCALE_SMOOTH);
         entidadGrafica.setIcon(new ImageIcon(new_img));

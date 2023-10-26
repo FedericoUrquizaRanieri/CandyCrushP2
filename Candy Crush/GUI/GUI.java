@@ -42,8 +42,8 @@ public class GUI extends JFrame{
         labelInfo.setLayout(null);
         labelInfo.setPreferredSize(new Dimension(Utils.panelWidth()/2, Utils.panelHeight()));
         labelInfo.setOpaque(false);
-        ImageIcon fondoInfo = new ImageIcon("Candy Crush/Imagenes/Tierra.png");
-        labelInfo.setIcon(new ImageIcon(fondoInfo.getImage().getScaledInstance(1308, Utils.panelHeight(), Image.SCALE_SMOOTH)));
+        ImageIcon fondoInfo = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Fondo2.png");
+        labelInfo.setIcon(new ImageIcon(fondoInfo.getImage().getScaledInstance(350, Utils.panelHeight(), Image.SCALE_SMOOTH)));
         
         NivelActual = new JLabel();
         NivelActual.setText(String.valueOf("Nivel  "+n.getNivel()));
@@ -64,7 +64,7 @@ public class GUI extends JFrame{
         labelInfo.add(tiempo);
 
 
-        ImageIcon imagenVida = new ImageIcon("Candy Crush/Imagenes/Extras/Vidas.png");
+        ImageIcon imagenVida = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/Vidas.png");
         JLabel fotoVidas = new JLabel();
         fotoVidas.setBounds(35, 200, 80, 80);
         fotoVidas.setIcon(new ImageIcon(imagenVida.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
@@ -80,7 +80,7 @@ public class GUI extends JFrame{
         labelInfo.add(vidas);
         
        
-        ImageIcon imagenMovimiento = new ImageIcon("Candy Crush/Imagenes/Extras/Velocidad.png");
+        ImageIcon imagenMovimiento = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/Velocidad.png");
         FotoMovimiento = new JLabel();
         FotoMovimiento.setBounds(15, 440, 130, 130);
         FotoMovimiento.setIcon(new ImageIcon(imagenMovimiento.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH)));
@@ -98,7 +98,7 @@ public class GUI extends JFrame{
         
        
 
-        ImageIcon imagenCaramelo = new ImageIcon("Candy Crush/Imagenes/Caramelos/amarillo.png");
+        ImageIcon imagenCaramelo = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Caramelos/amarillo.png");
         FotoObjetivo = new JLabel();
         FotoObjetivo.setBounds(35, 333, 80, 80);
         FotoObjetivo.setIcon(new ImageIcon(imagenCaramelo.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
@@ -117,7 +117,7 @@ public class GUI extends JFrame{
         getContentPane().add(labelInfo, BorderLayout.EAST);
         getContentPane().add(panel, BorderLayout.CENTER);
         pack();
-        getContentPane().add(new JLabel(new ImageIcon("Candy Crush/Imagenes/fondo.png")));
+        getContentPane().add(new JLabel(new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Fondo.png")));
         setVisible(true);
     }
 
@@ -147,21 +147,21 @@ public class GUI extends JFrame{
         ImageIcon ico = new ImageIcon();
 
         if(n.getObjetivoCaramelo()>0){
-            ico = new ImageIcon("Candy Crush/Imagenes/Caramelos/"+ n.getColorObjetivo().toString().toLowerCase()+".png");
+            ico = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Caramelos/"+ n.getColorObjetivo().toString().toLowerCase()+".png");
             objetivo.setText(String.valueOf(n.getObjetivoCaramelo()));
         }
         else{
             if(n.getObjetivoGelatina()>0){
-                ico = new ImageIcon("Candy Crush/Imagenes/Extras/Gelatina.png");
+                ico = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/Gelatina.png");
                 objetivo.setText(String.valueOf(n.getObjetivoGelatina()));
             }
             else{
                 if(n.getObjetivoGlaseado()>0){
-                    ico = new ImageIcon("Candy Crush/Imagenes/Extras/Merengue.png");
+                    ico = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/Merengue.png");
                     objetivo.setText(String.valueOf(n.getObjetivoGlaseado()));
                 }
                 else{
-                    ico = new ImageIcon("Candy Crush/Imagenes/Extras/EnvueltoObjetivo.png");
+                    ico = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/EnvueltoObjetivo.png");
                     objetivo.setText(String.valueOf(n.getObjetivoEnvuelto()));
                 }
             }

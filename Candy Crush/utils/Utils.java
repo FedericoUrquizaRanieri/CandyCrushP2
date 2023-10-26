@@ -5,6 +5,7 @@ public class Utils {
     public static int labelHeight = 60;
     public static int labelSpacing = 5;
     public static int dimension = 10;
+    public static String skin="Candy";
 
     public static int panelWidth() {
         return dimension * labelWidth + (dimension + 1) * labelSpacing;
@@ -17,5 +18,8 @@ public class Utils {
     }
     public static int labelPositionY(int y) {
         return y * (labelSpacing + labelHeight) + labelSpacing;
+    }
+    public static void setSkin(String s){
+        skin=s;
     }
 }

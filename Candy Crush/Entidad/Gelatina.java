@@ -1,13 +1,14 @@
 package Entidad;
 
 import Tablero.Tablero;
+import utils.Utils;
 
 public class Gelatina extends Entidad{
 
     private Caramelo caramelo;
 
     public Gelatina(int f, int c, Color color){
-        super(f,c,"Candy Crush/Imagenes/Extras/Gelatina.png");
+        super(f,c,"Candy Crush/Imagenes/"+Utils.skin+"/Extras/Gelatina.png");
         caramelo = new Caramelo(f,c, color);
     }
 
