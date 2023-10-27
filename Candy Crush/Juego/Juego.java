@@ -5,11 +5,18 @@ import java.awt.event.WindowEvent;
 import javax.swing.*;
 
 import GUI.GUI;
+import GUI.PanelMenu;
 import Nivel.Nivel;
 import Tablero.Tablero;
 import utils.Utils;
 import Entidad.Color;
 import GUI.EntidadGrafica;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 public class Juego{
     //Atributos
@@ -20,6 +27,11 @@ public class Juego{
 
     //Constructor
     public Juego(){
+        PanelMenu panelMenu = new PanelMenu(this);
+    }
+
+    //Metodos
+    public void crear(){
         miNivel = new Nivel(this,1);
         miTablero = new Tablero(this);
         miGUI = new GUI(this);
@@ -27,7 +39,6 @@ public class Juego{
         regenerar(1);
     }
 
-    //Metodos
     public void notificarDestruccion(Color color) {
         miNivel.restarCaramelo(color);
     }
@@ -45,6 +56,7 @@ public class Juego{
     }
 
     public void regenerar(int nivel){
+        //consultarSkin();
         miGUI.limpiarPanel();
         miGenerador.parseLvl(nivel,miTablero,miNivel);
         miGUI.notificarMovimiento();
@@ -110,4 +122,5 @@ public class Juego{
             }
         });
     }
+
 }
