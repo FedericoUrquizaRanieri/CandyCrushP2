@@ -3,7 +3,7 @@ package Entidad;
 import Tablero.Tablero;
 import utils.Utils;
 
-public class Glaseado extends Entidad{
+public class Glaseado extends Entidad implements Subscriber{
     public Glaseado(int f, int c){
         super(f,c,"Candy Crush/Imagenes/"+Utils.skin+"/Extras/Merengue.png");
         this.color = Color.NEGRO;
@@ -91,5 +91,18 @@ public class Glaseado extends Entidad{
 
     public void recibir(int f, int c, Glaseado gla, Tablero t){
         t.getGrilla()[f][c] = gla;
+    }
+
+    public void avisar(Tablero tablero) {
+        Entidad adyacente1 = tablero.getEntidad(this.fila, this.columna + 1);
+        Entidad adyacente2 = tablero.getEntidad(this.fila, this.columna - 1);
+        Entidad adyacente3 = tablero.getEntidad(this.fila + 1, this.columna);
+        Entidad adyacente4 = tablero.getEntidad(this.fila - 1, this.columna);
+
+        if(adyacente1 != null && adyacente1.estaDestruida() ||
+                adyacente2 != null && adyacente2.estaDestruida() ||
+                adyacente3 != null && adyacente3.estaDestruida() ||
+                adyacente4 != null && adyacente4.estaDestruida())
+            this.destruirse(tablero);
     }
 }
