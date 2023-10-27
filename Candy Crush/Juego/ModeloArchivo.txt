@@ -9,7 +9,11 @@ ObjetivosAzules
 ObjetivosMerengues
 ObjetivosGelatina
 ObjetivoEnvuelto
-CaramelosEnGrilla:
+Objetivo Bomba
+Objetivo Cruz
+CaramelosEnGrilla
+Seleccion de chequeos (Check3, check4, check5, checkL, checkT, check+)
+------------------------
 Caramelo Verde=1
 Caramelo Amarillo=2
 Caramelo Rosa=3
@@ -17,9 +21,19 @@ Caramelo Naranja=4
 Caramelo Rojo=5
 Caramelo Azul=6
 Merengue/Glaseado/Bedrock=7
+Caramelo Cruz = 8
+Caramelo Bomba = 9
 Gelatina con Verde=A
 Gelatina con Amarillo=B
 Gelatina con Rosa=C
 Gelatina con Naranja=D
 Gelatina con Rojo=E
 Gelatina con Azul=F
+
+Cruz con Verde=U
+Cruz con Amarillo=V
+Cruz con Rosa=W
+Cruz con Naranja=X
+Cruz con Rojo=Y
+Cruz con Azul=Z
+-------------------

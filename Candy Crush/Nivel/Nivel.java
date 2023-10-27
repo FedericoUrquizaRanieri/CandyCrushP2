@@ -22,6 +22,8 @@ public class Nivel{
     protected int objetivoGlaseado;
     protected int objetivoGelatina;
     protected int objetivoEnvuelto;
+    protected int objetivoCruz;
+    protected int objetivoBomba;
     protected contadorTiempo time;
 
 
@@ -101,6 +103,18 @@ public class Nivel{
     }
     public void setObjetivoGelatina(int o){
         objetivoGelatina=o;
+    }
+    public int getObjetivoCruz(){
+        return objetivoCruz;
+    }
+    public void setObjetivoCruz(int o){
+        objetivoCruz = o;
+    }
+    public int getObjetivoBomba(){
+        return objetivoBomba;
+    }
+    public void setObjetivoBomba(int o){
+        objetivoBomba = o;
     }
     public int getObjetivoEnvuelto(){
         return objetivoEnvuelto;

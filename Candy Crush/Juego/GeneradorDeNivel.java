@@ -72,9 +72,15 @@ public class GeneradorDeNivel {
                     t.ponerGlaseado(i,y);
                     y++;
                     System.out.print("G-");
+                } else if(obj.charAt(j)-84>0){
+                    t.ponerCruz(i, y, retColroes(obj.charAt(j)-36));
+                    y++;
+                } else if(obj.charAt(j)-48==9){
+                    t.ponerBomba(i, y);
+                    y++;
                 }
-            }
             System.out.println();
+            }
         }
     }
     private Color retColroes(int c){
@@ -112,5 +118,7 @@ public class GeneradorDeNivel {
         n.setObjetivoGlaseado(Integer.parseInt(objetivos.get(x-1).get(8)));
         n.setObjetivoGelatina(Integer.parseInt(objetivos.get(x-1).get(9)));
         n.setObjetivoEnvuelto(Integer.parseInt(objetivos.get(x-1).get(10)));
+        n.setObjetivoCruz(Integer.parseInt(objetivos.get(x-1).get(21)));
+        n.setObjetivoBomba(Integer.parseInt(objetivos.get(x-1).get(22)));
     }
 }

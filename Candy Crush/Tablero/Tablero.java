@@ -1,12 +1,21 @@
 package Tablero;
 
-import Entidad.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import Entidad.Bomba;
+import Entidad.Caramelo;
+import Entidad.Color;
+import Entidad.Cruz;
+import Entidad.Entidad;
+import Entidad.Envuelto;
+import Entidad.Gelatina;
+import Entidad.Glaseado;
+import Entidad.RalladoH;
+import Entidad.RalladoV;
 import GUI.EntidadGrafica;
 import Juego.Juego;
 import utils.Utils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Tablero{
 
@@ -238,5 +247,19 @@ public class Tablero{
         EntidadGrafica eg = new EntidadGrafica(x, y, e, miJuego.getMiGUI().getPanel());
         e.setEntidadGrafica(eg);
         miJuego.getMiGUI().insertarEntidadGrafica(eg);
-    } 
+    }
+    public void ponerCruz(int x, int y, Color c){
+        Cruz g= new Cruz(x,y,c);
+        grilla[x][y]=g;
+        EntidadGrafica eg1 = new EntidadGrafica(x, y, g, miJuego.getMiGUI().getPanel());
+        g.setEntidadGrafica(eg1);
+        miJuego.getMiGUI().insertarEntidadGrafica(eg1);
+    }
+    public void ponerBomba(int x, int y){
+        Bomba e=new Bomba(x,y);
+        grilla[x][y] = e;
+        EntidadGrafica eg = new EntidadGrafica(x, y, e, miJuego.getMiGUI().getPanel());
+        e.setEntidadGrafica(eg);
+        miJuego.getMiGUI().insertarEntidadGrafica(eg);
+    }
 }

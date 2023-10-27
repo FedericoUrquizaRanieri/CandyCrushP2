@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -40,9 +41,15 @@ public class PanelMenu extends JPanel{
         textField.setFont(new Font("Arial", Font.PLAIN, 20));
         textField.setBackground(Color.BLACK);
         textField.setHorizontalAlignment(JTextField.CENTER);
-        textField.setToolTipText("Ingresar Nombre (MAX 3 caracteres)");
+        textField.setToolTipText("Ingresar Nombre");
         textField.setForeground(Color.white);
         textField.setColumns(1);
+        
+        // textField.addKeyListener(new KeyAdapter(){
+        //     public void keyPressed(KeyEvent e) {
+
+        //     }
+        // });
 
         //Panel Candy Crush
         labelCandy = new JLabel();
@@ -51,15 +58,19 @@ public class PanelMenu extends JPanel{
         labelCandy.setOpaque(false);
         ImageIcon fondoCandy = new ImageIcon("Candy Crush/Imagenes/Candy/Extras/BotonCandy.jpg");
         labelCandy.setIcon(new ImageIcon(fondoCandy.getImage().getScaledInstance(350, Utils.panelHeight(), Image.SCALE_SMOOTH)));
-        labelCandy.addMouseListener(new MouseAdapter(){  
-            public void mouseClicked(MouseEvent e){  
+        labelCandy.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
                 nombreJugador = textField.getText();
-                chequeoNombre();
-                Utils.setSkin("Candy");
-                juego.crear();
-                frame.setVisible(false);
+                 if(textField.getText().length()>0){
+                    Utils.setSkin("Candy");
+                    juego.crear();
+                    frame.setVisible(false);
+                }
+                else{
+                    JOptionPane.showMessageDialog(frame, "Ingrese un nombre por favor", "ERROR!", JOptionPane.ERROR_MESSAGE);
+                }
             }});
-  
+
         panel.add(labelCandy);
         labelCandy.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
@@ -70,13 +81,17 @@ public class PanelMenu extends JPanel{
         labelMine.setOpaque(false);
         ImageIcon fondoInfo = new ImageIcon("Candy Crush/Imagenes/Minecraft/Extras/BotonMinecraft.png");
         labelMine.setIcon(new ImageIcon(fondoInfo.getImage().getScaledInstance(350, Utils.panelHeight(), Image.SCALE_SMOOTH)));
-        labelMine.addMouseListener(new MouseAdapter(){  
-            public void mouseClicked(MouseEvent e){  
+        labelMine.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
                 nombreJugador = textField.getText();
-                chequeoNombre();
-                Utils.setSkin("Minecraft");
-                juego.crear();
-                frame.setVisible(false);
+                if(textField.getText().length()>0){
+                    Utils.setSkin("Minecraft");
+                    juego.crear();
+                    frame.setVisible(false);
+                }
+                else{
+                    JOptionPane.showMessageDialog(frame, "Ingrese un nombre por favor", "ERROR!", JOptionPane.ERROR_MESSAGE);
+                }
             }});
 
         panel.add(labelMine);
@@ -89,9 +104,5 @@ public class PanelMenu extends JPanel{
         frame.setVisible(true);
 
         frame.pack();
-    }
-     private void chequeoNombre(){
-        if(nombreJugador.length()==0)
-            nombreJugador = "AAA";
     }
 }
