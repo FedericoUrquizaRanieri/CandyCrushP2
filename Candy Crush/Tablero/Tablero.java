@@ -3,18 +3,9 @@ package Tablero;
 import java.util.ArrayList;
 import java.util.List;
 
-import Entidad.Bomba;
-import Entidad.Caramelo;
-import Entidad.Color;
-import Entidad.Cruz;
-import Entidad.Entidad;
-import Entidad.Envuelto;
-import Entidad.Gelatina;
-import Entidad.Glaseado;
-import Entidad.RalladoH;
-import Entidad.RalladoV;
+import Entidad.*;
 import GUI.EntidadGrafica;
-import Juego.Juego;
+import Juego.*;
 import utils.Utils;
 
 public class Tablero{
@@ -27,6 +18,7 @@ public class Tablero{
     protected int dimension;
     private final Color[] colores = {Color.AZUL, Color.AMARILLO, Color.ROJO, Color.NARANJA, Color.ROSA, Color.VERDE};
     protected List<Boolean> condiciones;
+    protected BaseDeDatos miBaseDeDatos;
 
     //Constructor
     public Tablero(Juego j){
@@ -35,7 +27,8 @@ public class Tablero{
         grilla = new Entidad[dimension][dimension];
         posJugadorX=0;
         posJugadorY=0;
-        condiciones= new ArrayList<Boolean>();
+        condiciones= new ArrayList<>();
+        this.miBaseDeDatos = new BaseDeDatos();
     }
 
     //Metodos
@@ -85,6 +78,8 @@ public class Tablero{
     public void swap(int x, int y) {
         Entidad e1 = grilla[x][y];
         Entidad e2 = grilla[posJugadorX][posJugadorY];
+        for (Boolean b : condiciones)
+            System.out.println(b);
         if(e2.es_posible_intercambiar(e1)) {
             e1.cambiarPosicionCon(e2, this);
             e1 = grilla[x][y];
@@ -200,20 +195,48 @@ public class Tablero{
         }
 
         if(horizontales.isEmpty() ^ verticales.isEmpty()) {
-            for (Entidad entidad:horizontales)
-                entidad.destruirse(this);
-            for (Entidad entidad:verticales)
-                entidad.destruirse(this);
-            if(horizontales.size() > 3)
-                especialCreado = grilla[x][y] = new RalladoH(x,y,color);
-            else if(verticales.size() > 3)
-                especialCreado = grilla[x][y] = new RalladoV(x,y,color);
+            int cursor = 0;
             huboCambios = true;
+            List<Entidad> aRecorrer = horizontales.isEmpty() ? verticales : horizontales;
+            for(Entidad entidad : aRecorrer) {
+                if(cursor<3 && condiciones.get(0) && aRecorrer.size() == 3)
+                    entidad.destruirse(this);
+                else if(cursor<4 && condiciones.get(1) && aRecorrer.size() == 4)
+                    entidad.destruirse(this);
+                else if(cursor<5 && condiciones.get(2) && aRecorrer.size() == 5)
+                    entidad.destruirse(this);
+                else
+                    huboCambios = false;
+                cursor++;
+            }
+            if(horizontales.size() > 3 && (condiciones.get(1) || condiciones.get(2)))
+                especialCreado = grilla[x][y] = new RalladoH(x,y,color);
+            else if(verticales.size() > 3 && (condiciones.get(1) || condiciones.get(2)))
+                especialCreado = grilla[x][y] = new RalladoV(x,y,color);
         } else if(!horizontales.isEmpty() && !verticales.isEmpty()) {
-            for (Entidad entidad : horizontales)
-                entidad.destruirse(this);
-            for (Entidad entidad : verticales)
-                entidad.destruirse(this);
+            int cursor = 0;
+            for(int i = 0; i<6; i++) {
+                if(condiciones.get(5) && (horizontales.size() == 5 && verticales.size() == 5)){ // Caso de un MAS
+                    horizontales.get(i).destruirse(this);
+                    verticales.get(i).destruirse(this);
+                } else if(condiciones.get(4) && (horizontales.size() == 5 || verticales.size() == 5)) { // Caso de una T
+                    if(horizontales.size() == 5 && verticales.size() == 5) {
+                        if(cursor < 3)
+                            horizontales.get(cursor).destruirse(this);
+                        verticales.get(i).destruirse(this);
+                    } else {
+                        horizontales.get(i).destruirse(this);
+                        verticales.get(i).destruirse(this);
+                    }
+                    cursor++;
+                } else if(condiciones.get(3)) {
+                    if(cursor < 3) {
+                        horizontales.get(cursor).destruirse(this);
+                        verticales.get(cursor).destruirse(this);
+                    }
+                    cursor++;
+			    }
+            }
             for (int i = 0; i < horizontales.size(); i++)
                 if(verticales.contains(horizontales.get(i)))
                     especialCreado = grilla[horizontales.get(i).getFila()][horizontales.get(i).getColumna()] = new Envuelto(x, y, color);
@@ -267,5 +290,8 @@ public class Tablero{
         EntidadGrafica eg = new EntidadGrafica(x, y, e, miJuego.getMiGUI().getPanel());
         e.setEntidadGrafica(eg);
         miJuego.getMiGUI().insertarEntidadGrafica(eg);
+    }
+    public void aumentarPuntaje(int puntaje) {
+        miBaseDeDatos.aumentarPuntaje(puntaje);
     }
 }

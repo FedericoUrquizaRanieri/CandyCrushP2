@@ -19,6 +19,10 @@ public class Caramelo extends Entidad{
         return color;
     }
 
+    public int getPuntaje() {
+        return Utils.getPuntaje(this.color);
+    }
+
     public void destruirse(Tablero t){
         if(t.getEntidad(fila-1,columna) != null){
             t.getEntidad(fila-1,columna).chequeoDestruccion(t);
@@ -36,6 +40,7 @@ public class Caramelo extends Entidad{
             destruida = true;
             t.notificarDestruccion(this.color);
             eg.destruirse();
+            t.aumentarPuntaje(this.getPuntaje());
         }
     }
 

@@ -12,6 +12,7 @@ public class Glaseado extends Entidad{
         destruida = true;
         eg.destruirse();
         t.notificarDestruccionGlaseado();
+        t.aumentarPuntaje(25);
     }
     public boolean se_destruye_con(Entidad entidad) {
         return entidad.se_destruyen(this);

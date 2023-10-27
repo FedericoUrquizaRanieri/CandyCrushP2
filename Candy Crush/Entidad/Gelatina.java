@@ -64,10 +64,11 @@ public class Gelatina extends Entidad{
     public void destruirse(Tablero t){
         if(!destruida){
             t.notificarDestruccionGelatina();
+            eg.destruirse();
+            caramelo.destruirse(t);
+            destruida = true;
+            t.aumentarPuntaje(10);
         }
-        eg.destruirse();
-        caramelo.destruirse(t);
-        destruida = true;
     }
     public boolean se_destruye_con(Entidad entidad) {
         return entidad.se_destruyen(caramelo);

@@ -31,6 +31,7 @@ public class Envuelto extends Caramelo{
             t.notificarDestruccion(this.color);
             t.notificarDestruccionEnvuelto();
             eg.destruirse();
+            t.aumentarPuntaje(50);
         }
     }
 

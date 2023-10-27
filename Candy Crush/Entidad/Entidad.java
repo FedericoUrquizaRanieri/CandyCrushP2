@@ -11,6 +11,7 @@ public abstract class Entidad implements Intercambiable, Destruible, Matcheable,
     protected int columna;
     protected String imagePath;
     protected boolean destruida;
+    protected int puntaje;
 
     protected Entidad(int fila, int columna,String i) {
         this.fila = fila;
