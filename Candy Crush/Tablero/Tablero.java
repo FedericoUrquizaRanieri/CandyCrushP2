@@ -19,6 +19,7 @@ public class Tablero{
     private final Color[] colores = {Color.AZUL, Color.AMARILLO, Color.ROJO, Color.NARANJA, Color.ROSA, Color.VERDE};
     protected List<Boolean> condiciones;
     protected BaseDeDatos miBaseDeDatos;
+    protected List<Subscriber> misSubscriptores;
 
     //Constructor
     public Tablero(Juego j){
@@ -29,6 +30,7 @@ public class Tablero{
         posJugadorY=0;
         condiciones= new ArrayList<>();
         this.miBaseDeDatos = new BaseDeDatos();
+        this.misSubscriptores = new ArrayList<>();
     }
 
     //Metodos
@@ -293,5 +295,14 @@ public class Tablero{
     }
     public void aumentarPuntaje(int puntaje) {
         miBaseDeDatos.aumentarPuntaje(puntaje);
+    }
+
+    public void addSubscriber(Subscriber subscriber) {
+        misSubscriptores.add(subscriber);
+    }
+
+    public void notifySubscribers() {
+        for(Subscriber subscriber : misSubscriptores)
+            subscriber.avisar(this);
     }
 }
