@@ -82,6 +82,10 @@ public class GeneradorDeNivel {
             System.out.println();
             }
         }
+        List<Boolean> ListaObjetivos = t.getCondiciones();
+        for(int j=0;j<=6;j++){
+            
+        }
     }
     private Color retColroes(int c){
         switch(c-48){
