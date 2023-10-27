@@ -26,6 +26,7 @@ public class Tablero{
     protected Juego miJuego;
     protected int dimension;
     private final Color[] colores = {Color.AZUL, Color.AMARILLO, Color.ROJO, Color.NARANJA, Color.ROSA, Color.VERDE};
+    protected List<Boolean> condiciones;
 
     //Constructor
     public Tablero(Juego j){
@@ -34,6 +35,7 @@ public class Tablero{
         grilla = new Entidad[dimension][dimension];
         posJugadorX=0;
         posJugadorY=0;
+        condiciones= new ArrayList<Boolean>();
     }
 
     //Metodos
@@ -50,6 +52,10 @@ public class Tablero{
 
     public Juego getJuego() {
         return miJuego;
+    }
+
+    public List<Boolean> getCondiciones(){
+        return condiciones;
     }
 
     public boolean setPosJugadorX(int n){
