@@ -1,7 +1,9 @@
 package Tablero;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 import Entidad.*;
 import GUI.EntidadGrafica;
@@ -19,7 +21,7 @@ public class Tablero{
     private final Color[] colores = {Color.AZUL, Color.AMARILLO, Color.ROJO, Color.NARANJA, Color.ROSA, Color.VERDE};
     protected List<Boolean> condiciones;
     protected BaseDeDatos miBaseDeDatos;
-    protected List<Subscriber> misSubscriptores;
+    protected Queue<Subscriber> misSubscriptores;
 
     //Constructor
     public Tablero(Juego j){
@@ -30,7 +32,7 @@ public class Tablero{
         posJugadorY=0;
         condiciones= new ArrayList<>();
         this.miBaseDeDatos = new BaseDeDatos();
-        this.misSubscriptores = new ArrayList<>();
+        this.misSubscriptores = new LinkedList<>();
     }
 
     //Metodos
@@ -182,76 +184,47 @@ public class Tablero{
             e2 = grilla[x][i+1];
             e3 = grilla[x][i+2];
             if(e1!=null && e2!=null && e3!=null && e.match(e1) && e.match(e2) && e.match(e3)) {
-                if(!verticales.contains(e1)) verticales.add(e1);
-                if(!verticales.contains(e2)) verticales.add(e2);
-                if(!verticales.contains(e3)) verticales.add(e3);
+                verticales.add(e1);
+                verticales.add(e2);
+                verticales.add(e3);
             }
             e1 = grilla[i][y];
             e2 = grilla[i+1][y];
             e3 = grilla[i+2][y];
             if(e1!=null && e2!=null && e3!=null && e.match(e1) && e.match(e2) && e.match(e3)) {
-                if(!horizontales.contains(e1)) horizontales.add(e1);
-                if(!horizontales.contains(e2)) horizontales.add(e2);
-                if(!horizontales.contains(e3)) horizontales.add(e3);
+                horizontales.add(e1);
+                horizontales.add(e2);
+                horizontales.add(e3);
             }
         }
 
         if(horizontales.isEmpty() ^ verticales.isEmpty()) {
-            int cursor = 0;
-            List<Entidad> aRecorrer = horizontales.isEmpty() ? verticales : horizontales;
-            for(Entidad entidad : aRecorrer) {
-                if(cursor<5 && condiciones.get(2) && aRecorrer.size() == 5) {
-                    entidad.destruirse(this);
-                    huboCambios = true;
-                } else if(cursor<4 && condiciones.get(1) && aRecorrer.size() == 4) {
-                    entidad.destruirse(this);
-                    huboCambios = true;
-                } else if(cursor<3 && condiciones.get(0) && aRecorrer.size() == 5) {
-                    entidad.destruirse(this);
-                    huboCambios = true;
-                }
-                cursor++;
-            }
-            if(horizontales.size() > 3 && (condiciones.get(1) || condiciones.get(2)))
+            for (Entidad entidad:horizontales)
+                entidad.destruirse(this);
+            for (Entidad entidad:verticales)
+                entidad.destruirse(this);
+            if(horizontales.size() > 3)
                 especialCreado = grilla[x][y] = new RalladoH(x,y,color);
-            else if(verticales.size() > 3 && (condiciones.get(1) || condiciones.get(2)))
+            else if(verticales.size() > 3)
                 especialCreado = grilla[x][y] = new RalladoV(x,y,color);
+            huboCambios = true;
         } else if(!horizontales.isEmpty() && !verticales.isEmpty()) {
-            int cursor = 0;
-            for(int i = 0; i<6; i++) {
-                if(condiciones.get(5) && (horizontales.size() == 5 && verticales.size() == 5)){ // Caso de un MAS
-                    horizontales.get(i).destruirse(this);
-                    verticales.get(i).destruirse(this);
-                    huboCambios = true;
-                } else if(condiciones.get(4) && (horizontales.size() == 5 || verticales.size() == 5)) { // Caso de una T
-                    if(horizontales.size() == 5 && verticales.size() == 5) {
-                        if(cursor < 3)
-                            horizontales.get(cursor).destruirse(this);
-                        verticales.get(i).destruirse(this);
-                    } else {
-                        horizontales.get(i).destruirse(this);
-                        verticales.get(i).destruirse(this);
-                    }
-                    cursor++;
-                    huboCambios = true;
-                } else if(condiciones.get(3)) {
-                    if(cursor < 3) {
-                        horizontales.get(cursor).destruirse(this);
-                        verticales.get(cursor).destruirse(this);
-                    }
-                    cursor++;
-                    huboCambios = true;
-			    }
-            }
+            for (Entidad entidad : horizontales)
+                entidad.destruirse(this);
+            for (Entidad entidad : verticales)
+                entidad.destruirse(this);
             for (int i = 0; i < horizontales.size(); i++)
                 if(verticales.contains(horizontales.get(i)))
                     especialCreado = grilla[horizontales.get(i).getFila()][horizontales.get(i).getColumna()] = new Envuelto(x, y, color);
+            huboCambios = true;
         }
         if(especialCreado != null) {
             EntidadGrafica eg = new EntidadGrafica(especialCreado.getFila(),especialCreado.getColumna(),especialCreado,miJuego.getMiGUI().getPanel());
             especialCreado.setEntidadGrafica(eg);
             miJuego.asociar_entidad_grafica(eg);
         }
+        if(huboCambios)
+            notifySubscribers();
         ordenarColumnas();
         return huboCambios;
     }
@@ -281,6 +254,7 @@ public class Tablero{
         EntidadGrafica eg = new EntidadGrafica(x, y, e, miJuego.getMiGUI().getPanel());
         e.setEntidadGrafica(eg);
         miJuego.getMiGUI().insertarEntidadGrafica(eg);
+        addSubscriber(e);
     }
     public void ponerCruz(int x, int y, Color c){
         Cruz g= new Cruz(x,y,c);
@@ -301,11 +275,12 @@ public class Tablero{
     }
 
     public void addSubscriber(Subscriber subscriber) {
-        misSubscriptores.add(subscriber);
+        misSubscriptores.offer(subscriber);
     }
 
     public void notifySubscribers() {
-        for(Subscriber subscriber : misSubscriptores)
-            subscriber.avisar(this);
+        int size = misSubscriptores.size();
+        for (int i = 0; i < size; i++)
+            misSubscriptores.poll().avisar(this);
     }
 }

@@ -99,10 +99,13 @@ public class Glaseado extends Entidad implements Subscriber{
         Entidad adyacente3 = tablero.getEntidad(this.fila + 1, this.columna);
         Entidad adyacente4 = tablero.getEntidad(this.fila - 1, this.columna);
 
-        if(adyacente1 != null && adyacente1.estaDestruida() ||
-                adyacente2 != null && adyacente2.estaDestruida() ||
-                adyacente3 != null && adyacente3.estaDestruida() ||
-                adyacente4 != null && adyacente4.estaDestruida())
+        if((adyacente1 != null && adyacente1.estaDestruida()) ||
+                (adyacente2 != null && adyacente2.estaDestruida()) ||
+                (adyacente3 != null && adyacente3.estaDestruida()) ||
+                (adyacente4 != null && adyacente4.estaDestruida())) {
             this.destruirse(tablero);
+        } else {
+            tablero.addSubscriber(this);
+        }
     }
 }
