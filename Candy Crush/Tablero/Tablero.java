@@ -182,33 +182,34 @@ public class Tablero{
             e2 = grilla[x][i+1];
             e3 = grilla[x][i+2];
             if(e1!=null && e2!=null && e3!=null && e.match(e1) && e.match(e2) && e.match(e3)) {
-                verticales.add(e1);
-                verticales.add(e2);
-                verticales.add(e3);
+                if(!verticales.contains(e1)) verticales.add(e1);
+                if(!verticales.contains(e2)) verticales.add(e2);
+                if(!verticales.contains(e3)) verticales.add(e3);
             }
             e1 = grilla[i][y];
             e2 = grilla[i+1][y];
             e3 = grilla[i+2][y];
             if(e1!=null && e2!=null && e3!=null && e.match(e1) && e.match(e2) && e.match(e3)) {
-                horizontales.add(e1);
-                horizontales.add(e2);
-                horizontales.add(e3);
+                if(!horizontales.contains(e1)) horizontales.add(e1);
+                if(!horizontales.contains(e2)) horizontales.add(e2);
+                if(!horizontales.contains(e3)) horizontales.add(e3);
             }
         }
 
         if(horizontales.isEmpty() ^ verticales.isEmpty()) {
             int cursor = 0;
-            huboCambios = true;
             List<Entidad> aRecorrer = horizontales.isEmpty() ? verticales : horizontales;
             for(Entidad entidad : aRecorrer) {
-                if(cursor<3 && condiciones.get(0) && aRecorrer.size() == 3)
+                if(cursor<5 && condiciones.get(2) && aRecorrer.size() == 5) {
                     entidad.destruirse(this);
-                else if(cursor<4 && condiciones.get(1) && aRecorrer.size() == 4)
+                    huboCambios = true;
+                } else if(cursor<4 && condiciones.get(1) && aRecorrer.size() == 4) {
                     entidad.destruirse(this);
-                else if(cursor<5 && condiciones.get(2) && aRecorrer.size() == 5)
+                    huboCambios = true;
+                } else if(cursor<3 && condiciones.get(0) && aRecorrer.size() == 5) {
                     entidad.destruirse(this);
-                else
-                    huboCambios = false;
+                    huboCambios = true;
+                }
                 cursor++;
             }
             if(horizontales.size() > 3 && (condiciones.get(1) || condiciones.get(2)))
