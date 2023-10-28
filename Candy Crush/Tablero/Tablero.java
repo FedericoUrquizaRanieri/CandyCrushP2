@@ -222,6 +222,7 @@ public class Tablero{
                 if(condiciones.get(5) && (horizontales.size() == 5 && verticales.size() == 5)){ // Caso de un MAS
                     horizontales.get(i).destruirse(this);
                     verticales.get(i).destruirse(this);
+                    huboCambios = true;
                 } else if(condiciones.get(4) && (horizontales.size() == 5 || verticales.size() == 5)) { // Caso de una T
                     if(horizontales.size() == 5 && verticales.size() == 5) {
                         if(cursor < 3)
@@ -232,18 +233,19 @@ public class Tablero{
                         verticales.get(i).destruirse(this);
                     }
                     cursor++;
+                    huboCambios = true;
                 } else if(condiciones.get(3)) {
                     if(cursor < 3) {
                         horizontales.get(cursor).destruirse(this);
                         verticales.get(cursor).destruirse(this);
                     }
                     cursor++;
+                    huboCambios = true;
 			    }
             }
             for (int i = 0; i < horizontales.size(); i++)
                 if(verticales.contains(horizontales.get(i)))
                     especialCreado = grilla[horizontales.get(i).getFila()][horizontales.get(i).getColumna()] = new Envuelto(x, y, color);
-            huboCambios = true;
         }
         if(especialCreado != null) {
             EntidadGrafica eg = new EntidadGrafica(especialCreado.getFila(),especialCreado.getColumna(),especialCreado,miJuego.getMiGUI().getPanel());
