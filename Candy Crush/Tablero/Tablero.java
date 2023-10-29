@@ -1,7 +1,9 @@
 package Tablero;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 import Entidad.*;
 import GUI.EntidadGrafica;
@@ -19,6 +21,7 @@ public class Tablero{
     private final Color[] colores = {Color.AZUL, Color.AMARILLO, Color.ROJO, Color.NARANJA, Color.ROSA, Color.VERDE};
     protected List<Boolean> condiciones;
     protected BaseDeDatos miBaseDeDatos;
+    protected Queue<Subscriber> misSubscriptores;
 
     //Constructor
     public Tablero(Juego j){
@@ -29,6 +32,7 @@ public class Tablero{
         posJugadorY=0;
         condiciones= new ArrayList<>();
         this.miBaseDeDatos = new BaseDeDatos();
+        this.misSubscriptores = new LinkedList<>();
     }
 
     //Metodos
@@ -193,28 +197,9 @@ public class Tablero{
                 horizontales.add(e3);
             }
         }
-
-        if(horizontales.isEmpty() ^ verticales.isEmpty()) {
-            int cursor = 0;
+        int cursor = 0;
+        if(!horizontales.isEmpty() && !verticales.isEmpty() && (condiciones.get(3) || condiciones.get(4) || condiciones.get(5))) {
             huboCambios = true;
-            List<Entidad> aRecorrer = horizontales.isEmpty() ? verticales : horizontales;
-            for(Entidad entidad : aRecorrer) {
-                if(cursor<3 && condiciones.get(0) && aRecorrer.size() == 3)
-                    entidad.destruirse(this);
-                else if(cursor<4 && condiciones.get(1) && aRecorrer.size() == 4)
-                    entidad.destruirse(this);
-                else if(cursor<5 && condiciones.get(2) && aRecorrer.size() == 5)
-                    entidad.destruirse(this);
-                else
-                    huboCambios = false;
-                cursor++;
-            }
-            if(horizontales.size() > 3 && (condiciones.get(1) || condiciones.get(2)))
-                especialCreado = grilla[x][y] = new RalladoH(x,y,color);
-            else if(verticales.size() > 3 && (condiciones.get(1) || condiciones.get(2)))
-                especialCreado = grilla[x][y] = new RalladoV(x,y,color);
-        } else if(!horizontales.isEmpty() && !verticales.isEmpty()) {
-            int cursor = 0;
             for(int i = 0; i<6; i++) {
                 if(condiciones.get(5) && (horizontales.size() == 5 && verticales.size() == 5)){ // Caso de un MAS
                     horizontales.get(i).destruirse(this);
@@ -229,24 +214,41 @@ public class Tablero{
                         verticales.get(i).destruirse(this);
                     }
                     cursor++;
-                } else if(condiciones.get(3)) {
+                } else if(condiciones.get(3)) { // Caso de una L
                     if(cursor < 3) {
                         horizontales.get(cursor).destruirse(this);
                         verticales.get(cursor).destruirse(this);
                     }
                     cursor++;
-			    }
+                }
             }
             for (int i = 0; i < horizontales.size(); i++)
                 if(verticales.contains(horizontales.get(i)))
-                    especialCreado = grilla[horizontales.get(i).getFila()][horizontales.get(i).getColumna()] = new Envuelto(x, y, color);
+                    especialCreado = grilla[x][y] = new Envuelto(x, y, color);
+        } else if((!horizontales.isEmpty() || !verticales.isEmpty()) && (condiciones.get(0) || condiciones.get(1) || condiciones.get(2))){
             huboCambios = true;
+            List<Entidad> aRecorrer = verticales.size() > horizontales.size() ? verticales : horizontales;
+            for(Entidad entidad : aRecorrer) {
+                if(cursor < 5 && condiciones.get(2))
+                    entidad.destruirse(this);
+                else if(cursor < 4 && condiciones.get(1))
+                    entidad.destruirse(this);
+                else if(cursor < 3 && condiciones.get(0))
+                    entidad.destruirse(this);
+                cursor++;
+            }
+            if(horizontales.size() > 3 && (condiciones.get(1) || condiciones.get(2)))
+                especialCreado = grilla[x][y] = new RalladoH(x,y,color);
+            else if(verticales.size() > 3 && (condiciones.get(1) || condiciones.get(2)))
+                especialCreado = grilla[x][y] = new RalladoV(x,y,color);
         }
         if(especialCreado != null) {
             EntidadGrafica eg = new EntidadGrafica(especialCreado.getFila(),especialCreado.getColumna(),especialCreado,miJuego.getMiGUI().getPanel());
             especialCreado.setEntidadGrafica(eg);
             miJuego.asociar_entidad_grafica(eg);
         }
+        if(huboCambios)
+            notifySubscribers();
         ordenarColumnas();
         return huboCambios;
     }
@@ -276,6 +278,7 @@ public class Tablero{
         EntidadGrafica eg = new EntidadGrafica(x, y, e, miJuego.getMiGUI().getPanel());
         e.setEntidadGrafica(eg);
         miJuego.getMiGUI().insertarEntidadGrafica(eg);
+        addSubscriber(e);
     }
     public void ponerCruz(int x, int y, Color c){
         Cruz g= new Cruz(x,y,c);
@@ -293,5 +296,15 @@ public class Tablero{
     }
     public void aumentarPuntaje(int puntaje) {
         miBaseDeDatos.aumentarPuntaje(puntaje);
+    }
+
+    public void addSubscriber(Subscriber subscriber) {
+        misSubscriptores.offer(subscriber);
+    }
+
+    public void notifySubscribers() {
+        int size = misSubscriptores.size();
+        for (int i = 0; i < size; i++)
+            misSubscriptores.poll().avisar(this);
     }
 }

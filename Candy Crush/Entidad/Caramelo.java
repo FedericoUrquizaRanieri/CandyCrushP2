@@ -24,18 +24,6 @@ public class Caramelo extends Entidad{
     }
 
     public void destruirse(Tablero t){
-        if(t.getEntidad(fila-1,columna) != null){
-            t.getEntidad(fila-1,columna).chequeoDestruccion(t);
-        }
-        if(t.getEntidad(fila+1,columna) != null){
-            t.getEntidad(fila+1,columna).chequeoDestruccion(t);
-        }
-        if(t.getEntidad(fila,columna+1) != null){
-            t.getEntidad(fila,columna+1).chequeoDestruccion(t);
-        }
-        if(t.getEntidad(fila,columna-1) != null){
-            t.getEntidad(fila,columna-1).chequeoDestruccion(t);
-        }
         if(!destruida){
             destruida = true;
             t.notificarDestruccion(this.color);
