@@ -22,6 +22,7 @@ public class Juego{
     protected Tablero miTablero;
     protected Nivel miNivel;
     protected GeneradorDeNivel miGenerador;
+    protected BaseDeDatos miBaseDeDatos;
 
     //Constructor
     public Juego(){
@@ -30,8 +31,9 @@ public class Juego{
 
     //Metodos
     public void crear(){
+        miBaseDeDatos = new BaseDeDatos();
         miNivel = new Nivel(this,1);
-        miTablero = new Tablero(this);
+        miTablero = new Tablero(this, miBaseDeDatos);
         miGUI = new GUI(this);
         miGenerador = new GeneradorDeNivel();
         regenerar(1);
@@ -83,6 +85,10 @@ public class Juego{
 
     public int NivelActual(){
         return miNivel.getNivel();
+    }
+    
+    public int getPuntaje(){
+        return miBaseDeDatos.getPuntajeActual();
     }
     
     public void animacionesTerminadas(){

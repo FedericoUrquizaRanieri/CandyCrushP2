@@ -1,11 +1,10 @@
 package Entidad;
 
 import Tablero.Tablero;
-import utils.Utils;
 
 public class Glaseado extends Entidad implements Subscriber{
-    public Glaseado(int f, int c){
-        super(f,c,"Candy Crush/Imagenes/"+Utils.skin+"/Extras/Merengue.png");
+    public Glaseado(int f, int c, String path){
+        super(f,c,"Candy Crush/Imagenes/"+path+"/Extras/Merengue.png");
         this.color = Color.NEGRO;
     }
     public void destruirse(Tablero t){

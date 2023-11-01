@@ -4,18 +4,17 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import Tablero.Tablero;
-import utils.Utils;
 
 public class Bomba extends Glaseado{
     //Atributos
     protected int tiempo=30;
 
-    public Bomba(int f, int c) {
-        super(f, c);
-        imagePath="Candy Crush/Imagenes/"+Utils.skin+"/Extras/Bomba.png";
+    public Bomba(int f, int c,String path) {
+        super(f, c,path);
+        imagePath="Candy Crush/Imagenes/"+path+"/Extras/Bomba.png";
     }
     //Clase del tiempo
-        class contadorTiempo {
+    /*  class contadorTiempo {
         Timer t;
         public contadorTiempo() {
             t = new Timer();
@@ -33,10 +32,10 @@ public class Bomba extends Glaseado{
                 }
             }
         }
-    }
+    }*/
     public void destruirse(Tablero t){
         if(destruida==false){
-            new contadorTiempo();
+            //new contadorTiempo();
             destruida=true;
         }
     }

@@ -6,8 +6,8 @@ import utils.Utils;
 
 public class Caramelo extends Entidad{
 
-    public Caramelo(int f, int c, Color color){
-        super(f,c,"Candy Crush/Imagenes/"+Utils.skin+"/Caramelos/"+ color.toString().toLowerCase()+".png");
+    public Caramelo(int f, int c, Color color, String path){
+        super(f,c,"Candy Crush/Imagenes/"+path+"/Caramelos/"+ color.toString().toLowerCase()+".png");
         this.color = color;
     }
 

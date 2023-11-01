@@ -52,6 +52,9 @@ public class Utils {
                 puntaje = 25;
                 break;
             }
+            case NEGRO: {
+                break;
+            }
         }
         return puntaje;
     }

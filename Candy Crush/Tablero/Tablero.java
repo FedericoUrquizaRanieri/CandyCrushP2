@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Queue;
 
 import Entidad.*;
-import GUI.EntidadGrafica;
 import Juego.*;
 import utils.Utils;
 
@@ -22,9 +21,10 @@ public class Tablero{
     protected List<Boolean> condiciones;
     protected BaseDeDatos miBaseDeDatos;
     protected Queue<Subscriber> misSubscriptores;
+    protected Factory miFabrica;
 
     //Constructor
-    public Tablero(Juego j){
+    public Tablero(Juego j, BaseDeDatos b){
         miJuego=j;
         dimension = Utils.dimension;
         grilla = new Entidad[dimension][dimension];
@@ -33,6 +33,11 @@ public class Tablero{
         condiciones= new ArrayList<>();
         this.miBaseDeDatos = new BaseDeDatos();
         this.misSubscriptores = new LinkedList<>();
+        miBaseDeDatos = b;
+        if(Utils.skin=="Minecraft")
+            miFabrica = new MineFactory(miJuego);
+        else
+            miFabrica = new CandyFactory(miJuego);
     }
 
     //Metodos
@@ -88,17 +93,17 @@ public class Tablero{
             e1.cambiarPosicionCon(e2, this);
             e1 = grilla[x][y];
             e2 = grilla[posJugadorX][posJugadorY];
-            mostrarGrilla();
+            //mostrarGrilla();
             if (e1.se_destruye_con(e2)) {
                 e1.destruirse(this);
                 e2.destruirse(this);
                 ordenarColumnas();
-                mostrarGrilla();
+                //mostrarGrilla();
             } else if ((chequeoMovimiento(x, y) | chequeoMovimiento(posJugadorX, posJugadorY))) {
-                mostrarGrilla();
+                //mostrarGrilla();
             } else {
                 e1.cambiarPosicionCon(e2, this);
-                mostrarGrilla();
+                //mostrarGrilla();
             }
         }
     }
@@ -152,12 +157,9 @@ public class Tablero{
                 }
             }
             for (int i = idx; i >= 0; i--) {
-                Entidad e = new Caramelo(i, j, colores[(int) (Math.random() * 6)]);
-                EntidadGrafica eg = new EntidadGrafica(-1,j, e, miJuego.getMiGUI().getPanel());
-                e.setEntidadGrafica(eg);
+                Entidad e = miFabrica.crearCarameloCaida(i,j,colores[(int)(Math.random()*6)],this);
                 e.caer(i,j,this);
-                miJuego.asociar_entidad_grafica(eg);
-                eg.notificarCaida(Utils.labelPositionX(j),Utils.labelPositionY(i));
+                e.getEntidadGrafica().notificarCaida(Utils.labelPositionX(j),Utils.labelPositionY(i));
             }
         }
     }
@@ -174,7 +176,7 @@ public class Tablero{
         if(grilla[x][y] == null) return false;
         Entidad e = grilla[x][y];
         Color color = e.getColor();
-        Entidad e1,e2,e3,especialCreado=null;
+        Entidad e1,e2,e3;
         boolean huboCambios = false;
         List<Entidad> verticales = new ArrayList<>();
         List<Entidad> horizontales = new ArrayList<>();
@@ -224,7 +226,7 @@ public class Tablero{
             }
             for (int i = 0; i < horizontales.size(); i++)
                 if(verticales.contains(horizontales.get(i)))
-                    especialCreado = grilla[x][y] = new Envuelto(x, y, color);
+                    miFabrica.crearEnvuelto(x,y,color,this);
         } else if((!horizontales.isEmpty() || !verticales.isEmpty()) && (condiciones.get(0) || condiciones.get(1) || condiciones.get(2))){
             huboCambios = true;
             List<Entidad> aRecorrer = verticales.size() > horizontales.size() ? verticales : horizontales;
@@ -238,14 +240,9 @@ public class Tablero{
                 cursor++;
             }
             if(horizontales.size() > 3 && (condiciones.get(1) || condiciones.get(2)))
-                especialCreado = grilla[x][y] = new RalladoH(x,y,color);
+                miFabrica.crearRalladoH(x,y,color,this);
             else if(verticales.size() > 3 && (condiciones.get(1) || condiciones.get(2)))
-                especialCreado = grilla[x][y] = new RalladoV(x,y,color);
-        }
-        if(especialCreado != null) {
-            EntidadGrafica eg = new EntidadGrafica(especialCreado.getFila(),especialCreado.getColumna(),especialCreado,miJuego.getMiGUI().getPanel());
-            especialCreado.setEntidadGrafica(eg);
-            miJuego.asociar_entidad_grafica(eg);
+                miFabrica.crearRalladoV(x,y,color,this);
         }
         if(huboCambios)
             notifySubscribers();
@@ -254,45 +251,19 @@ public class Tablero{
     }
 
     public void ponerCaramelo(int x, int y, Color c){
-        Caramelo e=new Caramelo(x,y,c);
-        grilla[x][y] = e;
-        EntidadGrafica eg = new EntidadGrafica(x, y, e, miJuego.getMiGUI().getPanel());
-        e.setEntidadGrafica(eg);
-        miJuego.getMiGUI().insertarEntidadGrafica(eg);
+        miFabrica.crearCaramelo(x, y, c,this);
     }
     public void ponerGelatina(int x, int y,Color c){
-        Gelatina g= new Gelatina(x,y,c);
-        grilla[x][y]=g;
-        EntidadGrafica eg = new EntidadGrafica(x, y, g.getCaramelo(), miJuego.getMiGUI().getPanel());
-        miJuego.getMiGUI().insertarEntidadGrafica(eg);
-        EntidadGrafica eg1 = new EntidadGrafica(x, y, g, miJuego.getMiGUI().getPanel());
-        g.setEntidadGrafica(eg1);
-        g.getCaramelo().setEntidadGrafica(eg);
-        miJuego.getMiGUI().insertarEntidadGrafica(eg1);
-        miJuego.getMiGUI().getPanel().setLayer(eg1, -1);
-        
+        miFabrica.crearGelatina(x, y, c, this); 
     }
     public void ponerGlaseado(int x, int y){
-        Glaseado e=new Glaseado(x,y);
-        grilla[x][y] = e;
-        EntidadGrafica eg = new EntidadGrafica(x, y, e, miJuego.getMiGUI().getPanel());
-        e.setEntidadGrafica(eg);
-        miJuego.getMiGUI().insertarEntidadGrafica(eg);
-        addSubscriber(e);
+        miFabrica.crearGlaseado(x, y, this);
     }
     public void ponerCruz(int x, int y, Color c){
-        Cruz g= new Cruz(x,y,c);
-        grilla[x][y]=g;
-        EntidadGrafica eg1 = new EntidadGrafica(x, y, g, miJuego.getMiGUI().getPanel());
-        g.setEntidadGrafica(eg1);
-        miJuego.getMiGUI().insertarEntidadGrafica(eg1);
+        miFabrica.crearCruz(x, y, c, this);
     }
-    public void ponerBomba(int x, int y){
-        Bomba e=new Bomba(x,y);
-        grilla[x][y] = e;
-        EntidadGrafica eg = new EntidadGrafica(x, y, e, miJuego.getMiGUI().getPanel());
-        e.setEntidadGrafica(eg);
-        miJuego.getMiGUI().insertarEntidadGrafica(eg);
+    public void ponerBomba(int f, int c){
+        miFabrica.crearBomba(f,c, this);
     }
     public void aumentarPuntaje(int puntaje) {
         miBaseDeDatos.aumentarPuntaje(puntaje);

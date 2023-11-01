@@ -1,14 +1,13 @@
 package Entidad;
 
 import Tablero.Tablero;
-import utils.Utils;
 
 public class Cruz extends Caramelo{
     boolean explotando;
-    public Cruz(int f, int c, Color color) {
-        super(f, c, color);
+    public Cruz(int f, int c, Color color,String path) {
+        super(f, c, color,path);
         this.explotando = false;
-        imagePath="Candy Crush/Imagenes/"+Utils.skin+"/Cruz/"+color.toString().toLowerCase()+".png";
+        imagePath="Candy Crush/Imagenes/"+path+"/Cruz/"+color.toString().toLowerCase()+".png";
     }
     public void destruirse(Tablero t){
         if(!explotando) {

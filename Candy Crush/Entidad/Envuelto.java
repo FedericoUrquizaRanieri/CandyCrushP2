@@ -1,14 +1,13 @@
 package Entidad;
 
 import Tablero.Tablero;
-import utils.Utils;
 
 public class Envuelto extends Caramelo{
     boolean explotando;
-    public Envuelto(int f, int c, Color color){
-        super(f, c, color);
+    public Envuelto(int f, int c, Color color, String path){
+        super(f, c, color,path);
         this.explotando = false;
-        imagePath="Candy Crush/Imagenes/"+Utils.skin+"/Envueltos/"+ color.toString().toUpperCase()+".png";
+        imagePath="Candy Crush/Imagenes/"+path+"/Envueltos/"+ color.toString().toUpperCase()+".png";
     }
 
     public Color getColor() {

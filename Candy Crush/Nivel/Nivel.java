@@ -65,7 +65,7 @@ public class Nivel{
             vidas=3;
         }
         else{
-            icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/JuegoGanado.gif");
+            icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/NivelPerdido.gif");
             JOptionPane.showMessageDialog(null, "Perdiste el nivel", "Felicidades", JOptionPane.PLAIN_MESSAGE, icono);
             miJuego.regenerar(nivel);
         }
