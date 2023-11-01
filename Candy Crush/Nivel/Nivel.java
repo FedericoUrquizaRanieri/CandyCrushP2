@@ -26,8 +26,6 @@ public class Nivel{
     protected int objetivoBomba;
     protected contadorTiempo time;
 
-
-
     //Constructor
     public Nivel(Juego j,int nivel){
         miJuego=j;
@@ -60,13 +58,13 @@ public class Nivel{
         vidas--;
         ImageIcon icono;
         if(vidas==0){
+            miJuego.llamarJuegoPerdido();
             nivel=1;
             miJuego.regenerar(1);
             vidas=3;
         }
         else{
-            icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/NivelPerdido.gif");
-            JOptionPane.showMessageDialog(null, "Perdiste el nivel", "Felicidades", JOptionPane.PLAIN_MESSAGE, icono);
+            miJuego.llamarNivelPerdido();
             miJuego.regenerar(nivel);
         }
     }
@@ -130,14 +128,12 @@ public class Nivel{
             }
         }
     }
-
     public void restarGlaseado(){
         if(objetivoGlaseado>0){
             objetivoGlaseado--;
             miJuego.getMiGUI().notificarObjetivoGlaseado();
         }
     }
-
     public void restarGelatina(){
         if(objetivoGelatina>0){
             objetivoGelatina--;
@@ -150,7 +146,6 @@ public class Nivel{
             miJuego.getMiGUI().notificarObjetivoEnvuelto();
         }
     }
-
     public void restarMov(){
         if(movimientos>0){
             movimientos--;
@@ -160,15 +155,12 @@ public class Nivel{
             restarVida();
         }
     }
-
     public int getNivel(){
         return nivel;
     }
-
     public boolean objetivosTerminados(){
         return (objetivoCaramelo<=0 && objetivoGelatina<=0 && objetivoGlaseado<=0 && objetivoEnvuelto<=0);
     }
-    
     public void setNivel(int numero){
         nivel = numero;
     }

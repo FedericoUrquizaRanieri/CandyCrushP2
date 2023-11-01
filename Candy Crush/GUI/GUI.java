@@ -10,6 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import Juego.Juego;
@@ -225,5 +226,21 @@ public class GUI extends JFrame{
     public void notificarTiempo(int t){
         tiempo.setText(String.valueOf(t/60)+":"+String.valueOf(t%60));
         tiempo.setHorizontalTextPosition(SwingConstants.CENTER);
+    }
+    public void nivelPerdido(){
+        ImageIcon icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/NivelPerdido.gif");
+        JOptionPane.showMessageDialog(null, "Perdiste el nivel", ":(", JOptionPane.PLAIN_MESSAGE, icono);
+    }
+    public void NivelGanado(){
+        ImageIcon icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/NivelGanado.gif");
+        JOptionPane.showMessageDialog(null, "Pasaste de nivel", "Felicidades", JOptionPane.PLAIN_MESSAGE, icono);
+    }
+    public void juegoGanado(){
+        ImageIcon icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/JuegoGanado.gif");
+        JOptionPane.showMessageDialog(null, "Finalizaste el juego", "Felicidades", JOptionPane.PLAIN_MESSAGE, icono);
+    }
+    public void juegoPerdido(){
+        ImageIcon icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/JuegoPerdido.gif");
+        JOptionPane.showMessageDialog(null, "Perdiste el juego", ":(", JOptionPane.PLAIN_MESSAGE, icono);
     }
 }

@@ -96,45 +96,10 @@ public class Juego{
             miNivel.setNivel(NivelActual()+1);
             if(miNivel.getNivel() != 6){
                 regenerar(NivelActual());
-                ImageIcon icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/NivelGanado.gif");
-                JOptionPane.showMessageDialog(null, "Pasaste de nivel", "Felicidades", JOptionPane.PLAIN_MESSAGE, icono);
+                miGUI.NivelGanado();
             }
             else{
-                ImageIcon icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/JuegoGanado.gif");
-                JOptionPane.showMessageDialog(null, "Finalizaste el juego", "Felicidades", JOptionPane.PLAIN_MESSAGE, icono);
-                
-                JFrame frame = new JFrame("Formulario de Nombre");
-
-                // Crear un JTextField
-                JTextField textField = new JTextField(20); // 20 es el ancho del campo de texto
-        
-                // Crear un botón
-                JButton button = new JButton("Aceptar");
-        
-                // Crear un contenedor
-                JPanel panel = new JPanel();
-                panel.add(new JLabel("Nombre: "));
-                panel.add(textField);
-                panel.add(button);
-        
-                // Agregar un ActionListener al botón para capturar el nombre ingresado y cerrar la GUI
-                button.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        String nombre = textField.getText();
-                        JOptionPane.showMessageDialog(frame, "Hola, " + nombre + " tu puntaje final fue de ");
-                        frame.dispose(); // Cierra el marco actual
-        
-                miGUI.setVisible(false);
-                miGUI.dispatchEvent(new WindowEvent(miGUI, WindowEvent.WINDOW_CLOSING));
-                    }
-                });
-        
-                // Configurar el marco
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.getContentPane().add(panel);
-                frame.pack();
-                frame.setVisible(true);
+                miGUI.juegoGanado();
             }
         } else {
             boolean stop = false;
@@ -145,7 +110,12 @@ public class Juego{
             }
         }
     }
-
+    public void llamarJuegoPerdido(){
+        miGUI.juegoPerdido();
+    }
+    public void llamarNivelPerdido(){
+        miGUI.nivelPerdido();
+    }
     public static void main(String [] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
