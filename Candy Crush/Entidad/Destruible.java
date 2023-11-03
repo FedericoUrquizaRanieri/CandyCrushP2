@@ -10,4 +10,5 @@ public interface Destruible {
     public boolean se_destruyen(RalladoH ralladoH);
     public boolean se_destruyen(RalladoV ralladoV);
     public boolean se_destruyen(Envuelto envuelto);
+    public boolean se_destruyen(Cruz cruz);
 }

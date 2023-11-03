@@ -84,6 +84,9 @@ public class Gelatina extends Entidad{
     public boolean se_destruyen(Envuelto envuelto) {
         return envuelto.se_destruyen(caramelo);
     }
+    public boolean se_destruyen(Cruz cruz) {
+        return cruz.se_destruyen(caramelo);
+    }
 
     public boolean es_posible_intercambiar(Entidad e) {
         return e.puede_recibir(this.getCaramelo());
@@ -101,6 +104,9 @@ public class Gelatina extends Entidad{
         return true;
     }
     public boolean puede_recibir(RalladoV rv) {
+        return true;
+    }
+    public boolean puede_recibir(Cruz cruz) {
         return true;
     }
 
@@ -121,6 +127,9 @@ public class Gelatina extends Entidad{
     }
     public boolean match_with(Glaseado glaseado) {
         return false;
+    }
+    public boolean match_with(Cruz cruz) {
+        return this.caramelo.getColor() == cruz.getColor();
     }
 
     public void caer(int f, int c, Tablero t){

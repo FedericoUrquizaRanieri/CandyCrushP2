@@ -12,4 +12,5 @@ public interface Intercambiable {
     public boolean puede_recibir(Envuelto p);
     public boolean puede_recibir(RalladoH rh);
     public boolean puede_recibir(RalladoV rv);
+    public boolean puede_recibir(Cruz cruz);
 }

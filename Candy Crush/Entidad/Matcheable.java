@@ -7,4 +7,5 @@ public interface Matcheable {
     public boolean match_with(RalladoV ralladoV);
     public boolean match_with(Envuelto envuelto);
     public boolean match_with(Glaseado glaseado);
+    public boolean match_with(Cruz cruz);
 }

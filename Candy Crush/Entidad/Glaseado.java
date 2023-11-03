@@ -31,6 +31,9 @@ public class Glaseado extends Entidad implements Subscriber{
     public boolean se_destruyen(Envuelto envuelto) {
         return false;
     }
+    public boolean se_destruyen(Cruz cruz) {
+        return false;
+    }
 
     public void cambiarPosicionCon(Entidad entidad, Tablero tablero) {}
     public void cambiarPosicion(Caramelo caramelo, Tablero tablero) {}
@@ -52,6 +55,9 @@ public class Glaseado extends Entidad implements Subscriber{
         return false;
     }
     public boolean puede_recibir(RalladoV rv) {
+        return false;
+    }
+    public boolean puede_recibir(Cruz cruz) {
         return false;
     }
 
@@ -76,6 +82,10 @@ public class Glaseado extends Entidad implements Subscriber{
     }
 
     public boolean match_with(Glaseado glaseado) {
+        return false;
+    }
+
+    public boolean match_with(Cruz cruz) {
         return false;
     }
 

@@ -1,19 +1,12 @@
 package Juego;
 import java.awt.EventQueue;
-import java.awt.event.WindowEvent;
-
-import javax.swing.*;
 
 import GUI.GUI;
 import GUI.PanelMenu;
 import Nivel.Nivel;
 import Tablero.Tablero;
-import utils.Utils;
 import Entidad.Color;
 import GUI.EntidadGrafica;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 
 public class Juego{

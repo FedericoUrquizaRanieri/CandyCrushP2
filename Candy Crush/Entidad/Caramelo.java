@@ -47,6 +47,9 @@ public class Caramelo extends Entidad{
     public boolean se_destruyen(Envuelto envuelto) {
         return false;
     }
+    public boolean se_destruyen(Cruz cruz){
+        return cruz.getColor() == color;
+    }
 
     public void cambiarPosicionCon(Entidad entidad, Tablero tablero) {
         entidad.cambiarPosicion(this, tablero);
@@ -86,6 +89,9 @@ public class Caramelo extends Entidad{
     public boolean puede_recibir(RalladoV rv) {
         return true;
     }
+    public boolean puede_recibir(Cruz cruz) {
+        return true;
+    }
 
     public boolean match(Entidad entidad) {
         return entidad.match_with(this);
@@ -104,6 +110,9 @@ public class Caramelo extends Entidad{
     }
     public boolean match_with(Glaseado glaseado) {
         return false;
+    }
+    public boolean match_with(Cruz cruz) {
+        return this.color == cruz.getColor();
     }
 
     public void caer(int f, int c, Tablero t){

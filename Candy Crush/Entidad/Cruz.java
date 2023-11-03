@@ -5,7 +5,7 @@ import Tablero.Tablero;
 public class Cruz extends Caramelo{
     boolean explotando;
     public Cruz(int f, int c, Color color,String path) {
-        super(f, c, color,path);
+        super(f, c, color, path);
         this.explotando = false;
         imagePath="Candy Crush/Imagenes/"+path+"/Cruz/"+color.toString().toLowerCase()+".png";
     }
@@ -27,5 +27,26 @@ public class Cruz extends Caramelo{
             eg.destruirse();
         }
     }
-    //agregar los intercambios o eso
+
+    public boolean se_destruye_con(Entidad entidad) {
+        return entidad.se_destruyen(this);
+    }
+    public boolean se_destruyen(RalladoH ralladoH) {
+        return true;
+    }
+    public boolean se_destruyen(RalladoV ralladoV) {
+        return true;
+    }
+    public boolean se_destruyen(Envuelto envuelto) {
+        return true;
+    }
+    public boolean se_destruyen(Cruz cruz) {
+        return true;
+    }
+    public boolean se_destruyen(Caramelo caramelo) {
+        return this.color == caramelo.getColor();
+    }
+    public boolean es_posible_intercambiar(Entidad e) {
+        return e.puede_recibir(this);
+    }
 }

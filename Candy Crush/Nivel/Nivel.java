@@ -3,12 +3,8 @@ package Nivel;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-
 import Entidad.Color;
 import Juego.Juego;
-import utils.Utils;
 
 public class Nivel{
     //Atributos
@@ -56,7 +52,6 @@ public class Nivel{
     //Metodos
     public void restarVida(){
         vidas--;
-        ImageIcon icono;
         if(vidas==0){
             miJuego.llamarJuegoPerdido();
             nivel=1;

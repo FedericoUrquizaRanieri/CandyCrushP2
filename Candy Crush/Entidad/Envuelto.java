@@ -46,7 +46,9 @@ public class Envuelto extends Caramelo{
     public boolean se_destruyen(Envuelto envuelto) {
         return true;
     }
-
+    public boolean se_destruyen(Cruz cruz) {
+        return true;
+    }
     public boolean es_posible_intercambiar(Entidad e) {
         return e.puede_recibir(this);
     }
