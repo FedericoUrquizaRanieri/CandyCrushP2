@@ -2,6 +2,7 @@ package Juego;
 
 import Entidad.*;
 import GUI.EntidadGrafica;
+import GUI.EntidadGraficaDoble;
 import Tablero.Tablero;
 
 public class CandyFactory implements Factory{
@@ -57,7 +58,7 @@ public class CandyFactory implements Factory{
     public Bomba crearBomba(int f, int c, Tablero t) {
         Bomba e=new Bomba(f,c, pathCreador);
         t.getGrilla()[f][c] = e;
-        EntidadGrafica eg = new EntidadGrafica(f, c, e, miJuego.getMiGUI().getPanel());
+        EntidadGraficaDoble eg = new EntidadGraficaDoble(f, c, e, miJuego.getMiGUI().getPanel());
         e.setEntidadGrafica(eg);
         miJuego.getMiGUI().insertarEntidadGrafica(eg);
         return e;

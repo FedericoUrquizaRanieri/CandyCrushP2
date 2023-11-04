@@ -3,6 +3,7 @@ package Entidad;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import GUI.EntidadGraficaDoble;
 import Tablero.Tablero;
 
 public class Bomba extends Glaseado{
@@ -12,9 +13,10 @@ public class Bomba extends Glaseado{
     public Bomba(int f, int c,String path) {
         super(f, c,path);
         imagePath="Candy Crush/Imagenes/"+path+"/Extras/Bomba.png";
+        new contadorTiempo();
     }
     //Clase del tiempo
-    /*  class contadorTiempo {
+    class contadorTiempo {
         Timer t;
         public contadorTiempo() {
             t = new Timer();
@@ -24,7 +26,9 @@ public class Bomba extends Glaseado{
             public void run() {
                 if (tiempo > 0) {
                     tiempo--;
-                    //avisar a el timepo en la grafica
+                    if(eg!=null){
+                        ((EntidadGraficaDoble) eg).setTiempo(tiempo);
+                    }
                 }
                 else {
                     t.cancel();
@@ -32,15 +36,15 @@ public class Bomba extends Glaseado{
                 }
             }
         }
-    }*/
+    }
     public void destruirse(Tablero t){
-        if(destruida==false){
-            //new contadorTiempo();
-            destruida=true;
-        }
+        destruida = true;
+        eg.destruirse();
+        //t.notificarDestruccionBomba();
+        //t.aumentarPuntaje(25);
     }
     public void explotar(){
-        eg.destruirse();
+        //eg.destruirse();
         //nivel.terminar vidas;
         //tablero.notificarDestruccionBomba();
     }
