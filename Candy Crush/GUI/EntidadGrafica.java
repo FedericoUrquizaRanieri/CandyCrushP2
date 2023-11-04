@@ -8,8 +8,8 @@ import java.awt.*;
 
 public class EntidadGrafica extends JLabel{
     //Atributos
-    private Entidad entidad;
-    private Panel panel;
+    protected Entidad entidad;
+    protected Panel panel;
 
     //Constructor
     public EntidadGrafica(int x, int y,Entidad e, Panel panel) {

@@ -27,12 +27,14 @@ public class Bomba extends Glaseado{
                 if (tiempo > 0) {
                     tiempo--;
                     if(eg!=null){
+                        //revisar
                         ((EntidadGraficaDoble) eg).setTiempo(tiempo);
                     }
                 }
                 else {
                     t.cancel();
-                    explotar();
+                    eg.destruirse();
+                    //destruirse();
                 }
             }
         }
@@ -41,11 +43,7 @@ public class Bomba extends Glaseado{
         destruida = true;
         eg.destruirse();
         //t.notificarDestruccionBomba();
+        //t.terminar nivel
         //t.aumentarPuntaje(25);
-    }
-    public void explotar(){
-        //eg.destruirse();
-        //nivel.terminar vidas;
-        //tablero.notificarDestruccionBomba();
     }
 }

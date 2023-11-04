@@ -61,6 +61,7 @@ public class MineFactory implements Factory{
         EntidadGraficaDoble eg = new EntidadGraficaDoble(f, c, e, miJuego.getMiGUI().getPanel());
         e.setEntidadGrafica(eg);
         miJuego.getMiGUI().insertarEntidadGrafica(eg);
+        t.addSubscriber(e);
         return e;
     }
     @Override

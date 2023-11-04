@@ -27,4 +27,9 @@ public class EntidadGraficaDoble extends EntidadGrafica{
         this.tiempo=time;
         agregado.setText(String.valueOf(tiempo));
     }
+    public void destruirse(){
+        this.panel.remove(this);
+        this.remove(agregado);
+        this.entidad=null;
+    }
 }
