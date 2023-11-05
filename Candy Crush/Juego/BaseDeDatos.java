@@ -1,7 +1,12 @@
 package Juego;
 
-public class BaseDeDatos {
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
+public class BaseDeDatos implements Serializable{
     private int puntajeActual;
+    protected Map<Integer,String> top = new HashMap<Integer,String>();
 
     public BaseDeDatos() {
         this.puntajeActual = 0;
@@ -14,4 +19,29 @@ public class BaseDeDatos {
     public int getPuntajeActual() {
         return puntajeActual;
     }
+    //Agregar esto en el futuro
+    //es para cuando se termina el lvl pasar a puntos y a guaradr el archivo
+    //Va en un metodo afuera de esta clase
+    /*
+    try{
+        FileOutputStream fileOutputStream = new FileOutputStream("yourfile.txt");
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(person);
+        objectOutputStream.flush();
+        objectOutputStream.close();
+    }catch(FileNotFoundException || IOException e){e.printStackTrace();}
+     */
+    //Agregar esto probablemente en clase juego cuando quiera juntar los puntajes guardados
+    /*
+    try{
+        FileInputStream fileInputStream = new FileInputStream("yourfile.txt");
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        mibasededatos = (BaseDeDatos) objectInputStream.readObject();
+        objectInputStream.close(); 
+    }catch(ClassNotFoundException || IOException e){
+        e.printStackTrace();
+    }
+    catch(FileNotFoundException e){}
+     */
+    //cambiar el file ese por algo en utils que sea el nombre del archivo que vamos a usar para guardar los puntos
 }

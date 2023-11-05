@@ -253,18 +253,23 @@ public class Tablero{
     public void ponerCaramelo(int x, int y, Color c){
         miFabrica.crearCaramelo(x, y, c,this);
     }
+    
     public void ponerGelatina(int x, int y,Color c){
         miFabrica.crearGelatina(x, y, c, this); 
     }
+
     public void ponerGlaseado(int x, int y){
         miFabrica.crearGlaseado(x, y, this);
     }
+
     public void ponerCruz(int x, int y, Color c){
         miFabrica.crearCruz(x, y, c, this);
     }
+
     public void ponerBomba(int f, int c){
         miFabrica.crearBomba(f,c, this);
     }
+
     public void aumentarPuntaje(int puntaje) {
         miBaseDeDatos.aumentarPuntaje(puntaje);
     }
