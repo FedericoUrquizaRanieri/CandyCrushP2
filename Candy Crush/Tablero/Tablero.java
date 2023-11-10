@@ -31,7 +31,7 @@ public class Tablero{
         posJugadorX=0;
         posJugadorY=0;
         condiciones= new ArrayList<>();
-        this.miBaseDeDatos = new BaseDeDatos();
+        this.miBaseDeDatos = b;
         this.misSubscriptores = new LinkedList<>();
         miBaseDeDatos = b;
         if(Utils.skin=="Minecraft")
@@ -125,6 +125,10 @@ public class Tablero{
     public void notificarDestruccionGlaseado() {
         miJuego.notificarDestruccionGlaseado();
         System.out.println("Rompi un glaseado");
+    }
+    public void notificarDestruccionBomba() {
+        miJuego.notificarDestruccionBomba();
+        System.out.println("Rompi un Bomba");
     }
 
     //Metodo para imprimir logica por consola(test)
@@ -282,5 +286,8 @@ public class Tablero{
         int size = misSubscriptores.size();
         for (int i = 0; i < size; i++)
             misSubscriptores.poll().avisar(this);
+    }
+    public void terminar(){
+        miJuego.terminar();
     }
 }

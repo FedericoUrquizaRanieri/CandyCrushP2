@@ -6,7 +6,8 @@ import java.util.Map;
 
 public class BaseDeDatos implements Serializable{
     private int puntajeActual;
-    protected Map<Integer,String> top = new HashMap<Integer,String>();
+    private String jugadorActual;
+    protected Map<String,Integer> top = new HashMap<String,Integer>(5);
 
     public BaseDeDatos() {
         this.puntajeActual = 0;
@@ -18,6 +19,9 @@ public class BaseDeDatos implements Serializable{
 
     public int getPuntajeActual() {
         return puntajeActual;
+    }
+    public void reiniciarPuntos(){
+        puntajeActual=0;
     }
     //Agregar esto en el futuro
     //es para cuando se termina el lvl pasar a puntos y a guaradr el archivo

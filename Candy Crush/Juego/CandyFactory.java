@@ -56,7 +56,7 @@ public class CandyFactory implements Factory{
     }
     @Override
     public Bomba crearBomba(int f, int c, Tablero t) {
-        Bomba e=new Bomba(f,c, pathCreador);
+        Bomba e=new Bomba(f,c, pathCreador,t);
         t.getGrilla()[f][c] = e;
         EntidadGraficaDoble eg = new EntidadGraficaDoble(f, c, e, miJuego.getMiGUI().getPanel());
         e.setEntidadGrafica(eg);

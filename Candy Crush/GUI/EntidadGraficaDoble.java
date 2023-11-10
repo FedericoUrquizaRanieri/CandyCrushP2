@@ -23,7 +23,7 @@ public class EntidadGraficaDoble extends EntidadGrafica{
         agregado.setFont(new Font("TimesRoman", Font.BOLD, 30));
         this.add(agregado);
     }
-    public void setTiempo(int time){
+    public void actualizarse(int time){
         this.tiempo=time;
         agregado.setText(String.valueOf(tiempo));
     }

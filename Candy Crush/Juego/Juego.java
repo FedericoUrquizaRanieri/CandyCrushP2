@@ -1,5 +1,11 @@
 package Juego;
 import java.awt.EventQueue;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import GUI.GUI;
 import GUI.PanelMenu;
@@ -19,12 +25,20 @@ public class Juego{
 
     //Constructor
     public Juego(){
-        PanelMenu panelMenu = new PanelMenu(this);
+        new PanelMenu(this);
     }
 
     //Metodos
     public void crear(){
         miBaseDeDatos = new BaseDeDatos();
+        try{
+        FileInputStream fileInputStream = new FileInputStream("puntajes.txt");
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        miBaseDeDatos = (BaseDeDatos) objectInputStream.readObject();
+        objectInputStream.close(); 
+        }catch(ClassNotFoundException | IOException e){
+        e.printStackTrace();
+        }
         miNivel = new Nivel(this,1);
         miTablero = new Tablero(this, miBaseDeDatos);
         miGUI = new GUI(this);
@@ -47,12 +61,25 @@ public class Juego{
     public void notificarDestruccionGlaseado() {
         miNivel.restarGlaseado();
     }
+    public void notificarDestruccionBomba() {
+        miNivel.restarBomba();
+    }
 
     public void regenerar(int nivel){
         //consultarSkin();
         miGUI.limpiarPanel();
         miGenerador.parseLvl(nivel,miTablero,miNivel);
         miGUI.notificarMovimiento();
+    }
+
+    public void guardarDatos(){
+        try{
+        FileOutputStream fileOutputStream = new FileOutputStream("yourfile.txt");
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(miBaseDeDatos);
+        objectOutputStream.flush();
+        objectOutputStream.close();
+        }catch(IOException e){e.printStackTrace();}
     }
 
     public boolean moverCursor(int x,int y){
@@ -109,6 +136,9 @@ public class Juego{
     public void llamarNivelPerdido(){
         miGUI.nivelPerdido();
     }
+    public void terminar(){
+        miNivel.terminarNivel();
+    }
     public static void main(String [] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -120,5 +150,4 @@ public class Juego{
             }
         });
     }
-
 }

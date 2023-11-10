@@ -41,4 +41,7 @@ public class EntidadGrafica extends JLabel{
     public void notificarDestruccion(){
         panel.animarDestruccion(this);
     }
+    public void actualizarse(int time){
+
+    }
 }

@@ -238,6 +238,8 @@ public class GUI extends JFrame{
     public void juegoGanado(){
         ImageIcon icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/JuegoGanado.gif");
         JOptionPane.showMessageDialog(null, "Finalizaste el juego", "Felicidades", JOptionPane.PLAIN_MESSAGE, icono);
+        juego.guardarDatos();
+        System.exit(0);
     }
     public void juegoPerdido(){
         ImageIcon icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/JuegoPerdido.gif");

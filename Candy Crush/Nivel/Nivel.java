@@ -63,6 +63,12 @@ public class Nivel{
             miJuego.regenerar(nivel);
         }
     }
+    public void terminarNivel(){
+        miJuego.llamarJuegoPerdido();
+        nivel=1;
+        miJuego.regenerar(1);
+        vidas=3;
+    }
     public int getVidas(){
         return vidas;
     }
@@ -139,6 +145,12 @@ public class Nivel{
         if(objetivoEnvuelto>0){
             objetivoEnvuelto--;
             miJuego.getMiGUI().notificarObjetivoEnvuelto();
+        }
+    }
+    public void restarBomba() {
+        if(objetivoBomba>0){
+            objetivoBomba--;
+            miJuego.getMiGUI().notificarObjetivoBomba();
         }
     }
     public void restarMov(){
