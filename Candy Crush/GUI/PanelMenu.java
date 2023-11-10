@@ -19,15 +19,17 @@ import Juego.Juego;
 import utils.Utils;
 
 public class PanelMenu extends JPanel{
-    Juego miJuego;
+    //Atributos
+    protected Juego miJuego;
     protected JLabel labelCandy;
     protected JLabel labelMine;
     protected String nombreJugador;
 
+    //Constructor
     public PanelMenu(Juego juego){
         miJuego = juego;
         JFrame frame = new JFrame("PanelMenu"); // Crea un marco (ventana)
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Cierra la aplicación al cerrar la ventana
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         frame.setResizable(false);
 
         JPanel panel = new JPanel(); // Crea un panel
@@ -44,12 +46,6 @@ public class PanelMenu extends JPanel{
         textField.setToolTipText("Ingresar Nombre");
         textField.setForeground(Color.white);
         textField.setColumns(1);
-        
-        // textField.addKeyListener(new KeyAdapter(){
-        //     public void keyPressed(KeyEvent e) {
-
-        //     }
-        // });
 
         //Panel Candy Crush
         labelCandy = new JLabel();
@@ -97,10 +93,7 @@ public class PanelMenu extends JPanel{
         panel.add(labelMine);
         labelMine.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        // Agrega el panel al marco
         frame.add(panel);
-
-        // Hacer visible el marco
         frame.setVisible(true);
 
         frame.pack();

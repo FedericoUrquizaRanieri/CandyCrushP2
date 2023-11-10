@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 
 import GUI.GUI;
 import GUI.PanelMenu;
+import GUI.PanelScore;
 import Nivel.Nivel;
 import Tablero.Tablero;
 import Entidad.Color;
@@ -72,8 +73,9 @@ public class Juego{
     }
 
     public void guardarDatos(){
+        miBaseDeDatos.setPuntaje(0);
         try{
-        FileOutputStream fileOutputStream = new FileOutputStream("yourfile.txt");
+        FileOutputStream fileOutputStream = new FileOutputStream("puntajes.txt");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(miBaseDeDatos);
         objectOutputStream.flush();

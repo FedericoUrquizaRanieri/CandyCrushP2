@@ -5,12 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BaseDeDatos implements Serializable{
+    private int puntaje;
     private int puntajeActual;
     private String jugadorActual;
     protected Map<String,Integer> top = new HashMap<String,Integer>(5);
 
     public BaseDeDatos() {
         this.puntajeActual = 0;
+        this.puntaje = 0;
     }
 
     public void aumentarPuntaje(int puntaje) {
@@ -19,6 +21,10 @@ public class BaseDeDatos implements Serializable{
 
     public int getPuntajeActual() {
         return puntajeActual;
+    }
+
+    public void setPuntaje(int i){
+        puntajeActual = i;
     }
     public void reiniciarPuntos(){
         puntajeActual=0;
