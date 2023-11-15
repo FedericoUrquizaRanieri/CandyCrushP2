@@ -8,7 +8,6 @@ import java.io.ObjectOutputStream;
 
 import GUI.GUI;
 import GUI.PanelMenu;
-import GUI.PanelScore;
 import Nivel.Nivel;
 import Tablero.Tablero;
 import Entidad.Color;
@@ -25,11 +24,6 @@ public class Juego{
 
     //Constructor
     public Juego(){
-        new PanelMenu(this);
-    }
-
-    //Metodos
-    public void crear(){
         miBaseDeDatos = new BaseDeDatos();
         try{
         FileInputStream fileInputStream = new FileInputStream("puntajes.txt");
@@ -39,6 +33,11 @@ public class Juego{
         }catch(ClassNotFoundException | IOException e){
         e.printStackTrace();
         }
+        new PanelMenu(this);
+    }
+
+    //Metodos
+    public void crear(){
         miNivel = new Nivel(this,1);
         miTablero = new Tablero(this, miBaseDeDatos);
         miGUI = new GUI(this);
@@ -66,14 +65,13 @@ public class Juego{
     }
 
     public void regenerar(int nivel){
-        //consultarSkin();
         miGUI.limpiarPanel();
         miGenerador.parseLvl(nivel,miTablero,miNivel);
         miGUI.notificarMovimiento();
     }
 
     public void guardarDatos(){
-        miBaseDeDatos.setPuntaje(0);
+        miBaseDeDatos.reiniciarPuntos();
         try{
         FileOutputStream fileOutputStream = new FileOutputStream("puntajes.txt");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -114,6 +112,7 @@ public class Juego{
     
     public void animacionesTerminadas(){
         if(miNivel.objetivosTerminados()){
+            miBaseDeDatos.mezclarPuntos();
             miNivel.setNivel(NivelActual()+1);
             if(miNivel.getNivel() != 6){
                 regenerar(NivelActual());
@@ -139,6 +138,14 @@ public class Juego{
     }
     public void terminar(){
         miNivel.terminarNivel();
+    }
+
+    public void setNombre(String name){
+        miBaseDeDatos.setNombre(name);
+    }
+
+    public void bajarPuntaje(){
+        miBaseDeDatos.setPuntaje(0);
     }
     public static void main(String [] args) {
         EventQueue.invokeLater(new Runnable() {

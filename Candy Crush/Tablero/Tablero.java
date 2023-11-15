@@ -287,6 +287,7 @@ public class Tablero{
         for (int i = 0; i < size; i++)
             misSubscriptores.poll().avisar(this);
     }
+
     public void terminar(){
         miJuego.terminar();
     }

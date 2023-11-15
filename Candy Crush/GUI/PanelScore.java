@@ -1,26 +1,18 @@
 package GUI;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import org.w3c.dom.events.MouseEvent;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 
 import Juego.Juego;
-import utils.Utils;
 
 public class PanelScore extends JPanel{
     //Atributos
     protected Juego miJuego;
-    protected JLabel labelCandy;
-    protected JLabel labelMine;
     protected String nombreJugador;
 
     //Constructor

@@ -59,6 +59,7 @@ public class PanelMenu extends JPanel{
                 nombreJugador = textField.getText();
                  if(textField.getText().length()>0){
                     Utils.setSkin("Candy");
+                    miJuego.setNombre(textField.getText());
                     juego.crear();
                     frame.setVisible(false);
                 }
@@ -82,6 +83,7 @@ public class PanelMenu extends JPanel{
                 nombreJugador = textField.getText();
                 if(textField.getText().length()>0){
                     Utils.setSkin("Minecraft");
+                    miJuego.setNombre(textField.getText());
                     juego.crear();
                     frame.setVisible(false);
                 }

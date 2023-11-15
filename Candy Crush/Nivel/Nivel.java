@@ -60,6 +60,7 @@ public class Nivel{
         }
         else{
             miJuego.llamarNivelPerdido();
+            miJuego.bajarPuntaje();
             miJuego.regenerar(nivel);
         }
     }
