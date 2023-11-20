@@ -21,15 +21,15 @@ public class Juego{
     protected Nivel miNivel;
     protected GeneradorDeNivel miGenerador;
     protected BaseDeDatos miBaseDeDatos;
-
+    
     //Constructor
     public Juego(){
         miBaseDeDatos = new BaseDeDatos();
         try{
-        FileInputStream fileInputStream = new FileInputStream("puntajes.txt");
-        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-        miBaseDeDatos = (BaseDeDatos) objectInputStream.readObject();
-        objectInputStream.close(); 
+            FileInputStream fileInputStream = new FileInputStream("puntajes.txt");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            miBaseDeDatos = (BaseDeDatos) objectInputStream.readObject();
+            objectInputStream.close(); 
         }catch(ClassNotFoundException | IOException e){
         e.printStackTrace();
         }
@@ -119,6 +119,7 @@ public class Juego{
                 miGUI.NivelGanado();
             }
             else{
+                miBaseDeDatos.guardarPuntaje();
                 miGUI.juegoGanado();
             }
         } else {
@@ -157,5 +158,9 @@ public class Juego{
                 }
             }
         });
+    }
+
+    public void abrirPanelScore(){
+        miGUI.abrirPanelScore(miBaseDeDatos.getMapeo());
     }
 }

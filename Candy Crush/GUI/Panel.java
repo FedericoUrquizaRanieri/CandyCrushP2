@@ -100,6 +100,9 @@ public class Panel extends JLayeredPane {
                         }
                         break;
                     }
+                    case KeyEvent.VK_P:{
+                        juego.abrirPanelScore();
+                    }
                 }
             }
         });

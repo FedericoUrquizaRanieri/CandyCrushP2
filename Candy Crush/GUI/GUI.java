@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -14,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import Juego.Juego;
+import Juego.Par;
 import Nivel.Nivel;
 import utils.Utils;
 
@@ -34,12 +36,15 @@ public class GUI extends JFrame{
     protected JLabel FotoObjetivo;
     protected JLabel FotoMovimiento;
     protected JLabel score;
+    protected PanelScore miPanelScore;
 
     //Constructor
     public GUI(Juego juego) {
 
         Nivel n = juego.getNivel();
         this.juego = juego;
+        miPanelScore = new PanelScore(juego);
+        miPanelScore.setVisible(false);
         
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -249,11 +254,14 @@ public class GUI extends JFrame{
         ImageIcon icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/JuegoGanado.gif");
         JOptionPane.showMessageDialog(null, "Finalizaste el juego", "Felicidades", JOptionPane.PLAIN_MESSAGE, icono);
         juego.guardarDatos();
-        new PanelScore(juego);
-        this.setVisible(false);
+        System.exit(0);
     }
     public void juegoPerdido(){
         ImageIcon icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/JuegoPerdido.gif");
-        JOptionPane.showMessageDialog(null, "Perdiste el juego", ":(", JOptionPane.PLAIN_MESSAGE, icono);
+        JOptionPane.showMessageDialog(null, "Perdiste el nivel", ":(", JOptionPane.PLAIN_MESSAGE, icono);
+    }
+    public void abrirPanelScore(List<Par<String,Integer>> top) {
+        miPanelScore.parsearScore(top);
+        miPanelScore.setVisiblePanel(true);
     }
 }
