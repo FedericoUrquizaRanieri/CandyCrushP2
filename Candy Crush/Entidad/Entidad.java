@@ -1,5 +1,7 @@
 package Entidad;
 
+import java.net.URL;
+
 import GUI.EntidadGrafica;
 import Tablero.Tablero;
 import utils.Utils;
@@ -9,15 +11,14 @@ public abstract class Entidad implements Intercambiable, Destruible, Matcheable,
     protected Color color;
     protected int fila;
     protected int columna;
-    protected String imagePath;
+    protected URL imagePath;
     protected boolean destruida;
     protected int puntaje;
 
-    protected Entidad(int fila, int columna,String i) {
+    protected Entidad(int fila, int columna) {
         this.fila = fila;
         this.columna = columna;
         this.destruida = false;
-        imagePath=i;
     }
 
     public void setEntidadGrafica(EntidadGrafica eg){
@@ -40,7 +41,7 @@ public abstract class Entidad implements Intercambiable, Destruible, Matcheable,
     public boolean se_destruyen(Glaseado glaseado) {
         return false;
     }
-    public String getImage(){
+    public URL getImage(){
         return imagePath;
     }
     public int getFila() {

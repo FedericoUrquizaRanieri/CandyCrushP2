@@ -1,13 +1,15 @@
 package Entidad;
 
 import GUI.EntidadGrafica;
+import Juego.Juego;
 import Tablero.Tablero;
 import utils.Utils;
 
 public class Caramelo extends Entidad{
 
     public Caramelo(int f, int c, Color color, String path){
-        super(f,c,"Candy Crush/Imagenes/"+path+"/Caramelos/"+ color.toString().toLowerCase()+".png");
+        super(f,c);
+        imagePath = Juego.class.getResource(path+"/Caramelos/"+ color.toString().toLowerCase()+".png");
         this.color = color;
     }
 

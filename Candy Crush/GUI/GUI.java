@@ -62,7 +62,7 @@ public class GUI extends JFrame{
         labelInfo.setLayout(null);
         labelInfo.setPreferredSize(new Dimension(Utils.panelWidth()/2, Utils.panelHeight()));
         labelInfo.setOpaque(false);
-        ImageIcon fondoInfo = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Fondo2.png");
+        ImageIcon fondoInfo = new ImageIcon(Juego.class.getResource(Utils.skin+"/Fondo2.png"));
         labelInfo.setIcon(new ImageIcon(fondoInfo.getImage().getScaledInstance(350, Utils.panelHeight(), Image.SCALE_SMOOTH)));
         
         NivelActual = new JLabel();
@@ -84,7 +84,7 @@ public class GUI extends JFrame{
         labelInfo.add(tiempo);
 
 
-        ImageIcon imagenVida = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/Vidas.png");
+        ImageIcon imagenVida = new ImageIcon(Juego.class.getResource(Utils.skin+"/Extras/Vidas.png"));
         JLabel fotoVidas = new JLabel();
         fotoVidas.setBounds(45, 185, 80, 80);
         fotoVidas.setIcon(new ImageIcon(imagenVida.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
@@ -99,7 +99,7 @@ public class GUI extends JFrame{
         vidas.setFont(new Font("TimesRoman", Font.BOLD, 65));
         labelInfo.add(vidas);
 
-        ImageIcon imagenCaramelo = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Caramelos/amarillo.png");
+        ImageIcon imagenCaramelo = new ImageIcon(Juego.class.getResource(Utils.skin+"/Caramelos/amarillo.png"));
         FotoObjetivo = new JLabel();
         FotoObjetivo.setBounds(45, 300, 80, 80);
         FotoObjetivo.setIcon(new ImageIcon(imagenCaramelo.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
@@ -115,7 +115,7 @@ public class GUI extends JFrame{
         objetivo.setFont(new Font("TimesRoman", Font.BOLD, 65));
         labelInfo.add(objetivo);
 
-        ImageIcon imagenMovimiento = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/Velocidad.png");
+        ImageIcon imagenMovimiento = new ImageIcon(Juego.class.getResource(Utils.skin+"/Extras/Velocidad.png"));
         FotoMovimiento = new JLabel();
         FotoMovimiento.setBounds(45, 420, 80, 80);
         FotoMovimiento.setIcon(new ImageIcon(imagenMovimiento.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
@@ -152,7 +152,7 @@ public class GUI extends JFrame{
         getContentPane().add(labelInfo, BorderLayout.EAST);
         getContentPane().add(panel, BorderLayout.CENTER);
         pack();
-        getContentPane().add(new JLabel(new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Fondo.png")));
+        getContentPane().add(new JLabel(new ImageIcon(Juego.class.getResource(Utils.skin+"/Fondo.png"))));
         setVisible(true);
     }
 
@@ -176,31 +176,31 @@ public class GUI extends JFrame{
         NivelActual.setText(String.valueOf("Nivel "+n.getNivel()));
         ImageIcon ico = new ImageIcon();
         if(n.getObjetivoCaramelo()>0){
-            ico = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Caramelos/"+ n.getColorObjetivo().toString().toLowerCase()+".png");
+            ico = new ImageIcon(Juego.class.getResource(Utils.skin+"/Caramelos/"+ n.getColorObjetivo().toString().toLowerCase()+".png"));
             objetivo.setText(String.valueOf(n.getObjetivoCaramelo()));
         }
         else{
             if(n.getObjetivoGelatina()>0){
-                ico = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/Gelatina.png");
+                ico = new ImageIcon(Juego.class.getResource(Utils.skin+"/Extras/Gelatina.png"));
                 objetivo.setText(String.valueOf(n.getObjetivoGelatina()));
             }
             else{
                 if(n.getObjetivoGlaseado()>0){
-                    ico = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/Merengue.png");
+                    ico = new ImageIcon(Juego.class.getResource(Utils.skin+"/Extras/Merengue.png"));
                     objetivo.setText(String.valueOf(n.getObjetivoGlaseado()));
                 }
                 else{
                     if(n.getObjetivoEnvuelto()>0){
-                        ico = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/EnvueltoObjetivo.png");
+                        ico = new ImageIcon(Juego.class.getResource(Utils.skin+"/Extras/EnvueltoObjetivo.png"));
                         objetivo.setText(String.valueOf(n.getObjetivoEnvuelto()));
                 }
                     else{
                         if(n.getObjetivoCruz()>0){
-                        ico = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Cruz/ROSA.png");
+                        ico = new ImageIcon(Juego.class.getResource(Utils.skin+"/Cruz/ROSA.png"));
                         objetivo.setText(String.valueOf(n.getObjetivoCruz()));
                         }
                         else{
-                            ico = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/Bomba.png");
+                            ico = new ImageIcon(Juego.class.getResource(Utils.skin+"/Extras/Bomba.png"));
                             objetivo.setText(String.valueOf(n.getObjetivoBomba()));
                         }
                     }
@@ -243,21 +243,21 @@ public class GUI extends JFrame{
         tiempo.setHorizontalTextPosition(SwingConstants.CENTER);
     }
     public void nivelPerdido(){
-        ImageIcon icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/NivelPerdido.gif");
+        ImageIcon icono = new ImageIcon(Juego.class.getResource(Utils.skin+"/Extras/NivelPerdido.gif"));
         JOptionPane.showMessageDialog(null, "Perdiste el nivel", ":(", JOptionPane.PLAIN_MESSAGE, icono);
     }
     public void NivelGanado(){
-        ImageIcon icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/NivelGanado.gif");
+        ImageIcon icono = new ImageIcon(Juego.class.getResource(Utils.skin+"/Extras/NivelGanado.gif"));
         JOptionPane.showMessageDialog(null, "Pasaste de nivel", "Felicidades", JOptionPane.PLAIN_MESSAGE, icono);
     }
     public void juegoGanado(){
-        ImageIcon icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/JuegoGanado.gif");
+        ImageIcon icono = new ImageIcon(Juego.class.getResource(Utils.skin+"/Extras/JuegoGanado.gif"));
         JOptionPane.showMessageDialog(null, "Finalizaste el juego", "Felicidades", JOptionPane.PLAIN_MESSAGE, icono);
         juego.guardarDatos();
         System.exit(0);
     }
     public void juegoPerdido(){
-        ImageIcon icono = new ImageIcon("Candy Crush/Imagenes/"+Utils.skin+"/Extras/JuegoPerdido.gif");
+        ImageIcon icono = new ImageIcon(Juego.class.getResource(Utils.skin+"/Extras/JuegoPerdido.gif"));
         JOptionPane.showMessageDialog(null, "Perdiste el nivel", ":(", JOptionPane.PLAIN_MESSAGE, icono);
     }
     public void abrirPanelScore(List<Par<String,Integer>> top) {

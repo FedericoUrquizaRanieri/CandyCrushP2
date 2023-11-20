@@ -52,7 +52,7 @@ public class PanelMenu extends JPanel{
         labelCandy.setLayout(null);
         labelCandy.setPreferredSize(new Dimension(Utils.panelWidth()/2, Utils.panelHeight()));
         labelCandy.setOpaque(false);
-        ImageIcon fondoCandy = new ImageIcon("Candy Crush/Imagenes/Candy/Extras/BotonCandy.jpg");
+        ImageIcon fondoCandy = new ImageIcon(Juego.class.getResource("Candy/Extras/BotonCandy.jpg"));
         labelCandy.setIcon(new ImageIcon(fondoCandy.getImage().getScaledInstance(350, Utils.panelHeight(), Image.SCALE_SMOOTH)));
         labelCandy.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e){
@@ -76,7 +76,7 @@ public class PanelMenu extends JPanel{
         labelMine.setLayout(null);
         labelMine.setPreferredSize(new Dimension(Utils.panelWidth()/2, Utils.panelHeight()));
         labelMine.setOpaque(false);
-        ImageIcon fondoInfo = new ImageIcon("Candy Crush/Imagenes/Minecraft/Extras/BotonMinecraft.png");
+        ImageIcon fondoInfo = new ImageIcon(Juego.class.getResource("Minecraft/Extras/BotonMinecraft.png"));
         labelMine.setIcon(new ImageIcon(fondoInfo.getImage().getScaledInstance(350, Utils.panelHeight(), Image.SCALE_SMOOTH)));
         labelMine.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e){

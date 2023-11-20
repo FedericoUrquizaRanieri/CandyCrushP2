@@ -1,5 +1,6 @@
 package Entidad;
 
+import Juego.Juego;
 import Tablero.Tablero;
 
 public class RalladoV extends Caramelo{
@@ -7,7 +8,8 @@ public class RalladoV extends Caramelo{
     public RalladoV(int f, int c, Color color,String path){
         super(f, c, color,path);
         this.explotando = false;
-        imagePath="Candy Crush/Imagenes/"+path+"/Rayados/RayadosV/"+ color.toString().toUpperCase()+".png";
+        imagePath = Juego.class.getResource(path+"/Rayados/RayadosV/"+ color.toString().toUpperCase()+".png");
+
     }
     public void destruirse(Tablero t){
         if(!explotando) {

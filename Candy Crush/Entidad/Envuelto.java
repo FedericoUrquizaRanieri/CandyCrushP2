@@ -1,5 +1,6 @@
 package Entidad;
 
+import Juego.Juego;
 import Tablero.Tablero;
 
 public class Envuelto extends Caramelo{
@@ -7,7 +8,7 @@ public class Envuelto extends Caramelo{
     public Envuelto(int f, int c, Color color, String path){
         super(f, c, color,path);
         this.explotando = false;
-        imagePath="Candy Crush/Imagenes/"+path+"/Envueltos/"+ color.toString().toUpperCase()+".png";
+        imagePath = Juego.class.getResource(path+"/Envueltos/"+ color.toString().toUpperCase()+".png");
     }
 
     public Color getColor() {

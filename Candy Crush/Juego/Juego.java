@@ -161,6 +161,6 @@ public class Juego{
     }
 
     public void abrirPanelScore(){
-        miGUI.abrirPanelScore(miBaseDeDatos.getMapeo());
+        miGUI.abrirPanelScore(miBaseDeDatos.getLista());
     }
 }

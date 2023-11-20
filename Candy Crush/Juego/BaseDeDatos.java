@@ -49,7 +49,7 @@ public class BaseDeDatos implements Serializable{
         return nombreActual;
     }
 
-    public List<Par<String,Integer>> getMapeo(){
+    public List<Par<String,Integer>> getLista(){
         return top; 
     }
 

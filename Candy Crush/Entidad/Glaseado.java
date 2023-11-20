@@ -1,10 +1,12 @@
 package Entidad;
 
+import Juego.Juego;
 import Tablero.Tablero;
 
 public class Glaseado extends Entidad implements Subscriber{
     public Glaseado(int f, int c, String path){
-        super(f,c,"Candy Crush/Imagenes/"+path+"/Extras/Merengue.png");
+        super(f,c);
+        imagePath = Juego.class.getResource(path+"/Extras/Merengue.png");
         this.color = Color.NEGRO;
     }
     public void destruirse(Tablero t){

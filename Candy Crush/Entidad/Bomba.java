@@ -3,6 +3,7 @@ package Entidad;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import Juego.Juego;
 import Tablero.Tablero;
 
 public class Bomba extends Glaseado {
@@ -13,8 +14,8 @@ public class Bomba extends Glaseado {
 
     public Bomba(int f, int c, String path, Tablero t) {
         super(f, c, path);
-        imagePath = "Candy Crush/Imagenes/" + path + "/Extras/Bomba.png";
         tablero = t;
+        imagePath = Juego.class.getResource(path + "/Extras/Bomba.png");
         timer = new Timer();
         timer.scheduleAtFixedRate(new contador(), 0, 1000);
     }

@@ -1,5 +1,6 @@
 package Entidad;
 
+import Juego.Juego;
 import Tablero.Tablero;
 
 public class Gelatina extends Entidad{
@@ -7,7 +8,8 @@ public class Gelatina extends Entidad{
     private Caramelo caramelo;
 
     public Gelatina(int f, int c, Color color,String path){
-        super(f,c,"Candy Crush/Imagenes/"+path+"/Extras/Gelatina.png");
+        super(f,c);
+        imagePath = Juego.class.getResource(path+"/Extras/Gelatina.png");
         caramelo = new Caramelo(f,c, color, path);
     }
 
