@@ -87,62 +87,36 @@ public class Tablero{
     public void swap(int x, int y) {
         Entidad e1 = grilla[x][y];
         Entidad e2 = grilla[posJugadorX][posJugadorY];
-        for (Boolean b : condiciones)
-            System.out.println(b);
         if(e2.es_posible_intercambiar(e1)) {
             e1.cambiarPosicionCon(e2, this);
             e1 = grilla[x][y];
             e2 = grilla[posJugadorX][posJugadorY];
-            //mostrarGrilla();
             if (e1.se_destruye_con(e2)) {
                 e1.destruirse(this);
                 e2.destruirse(this);
                 ordenarColumnas();
-                //mostrarGrilla();
             } else if ((chequeoMovimiento(x, y) | chequeoMovimiento(posJugadorX, posJugadorY))) {
-                //mostrarGrilla();
             } else {
                 e1.cambiarPosicionCon(e2, this);
-                //mostrarGrilla();
             }
         }
     }
-    //Estos metodos tienen el sout agregado para ver cuando y que rompes
     public void notificarDestruccion(Color color) {
         miJuego.notificarDestruccion(color);
-        System.out.println("Rompi un caramelo");
     }
 
     public void notificarDestruccionGelatina() {
         miJuego.notificarDestruccionGelatina();
-        System.out.println("Rompi una gelatina");
     }
     public void notificarDestruccionEnvuelto() {
         miJuego.notificarDestruccionEnvuelto();
-        System.out.println("Rompi un envuelto");
     }
 
     public void notificarDestruccionGlaseado() {
         miJuego.notificarDestruccionGlaseado();
-        System.out.println("Rompi un glaseado");
     }
     public void notificarDestruccionBomba() {
         miJuego.notificarDestruccionBomba();
-        System.out.println("Rompi un Bomba");
-    }
-
-    //Metodo para imprimir logica por consola(test)
-    public void mostrarGrilla() {
-        for (int i = 0; i < dimension; i++) {
-            for (int j = 0; j < dimension; j++) {
-                if(getEntidad(i,j) != null)
-                    System.out.print(getEntidad(i,j).getColor().toString().substring(0,3).toUpperCase() + " - ");
-                else
-                    System.out.print("NUL - ");
-            }
-            System.out.println('\n');
-        }
-        System.out.println("-------------------------------------------------------");
     }
 
     public boolean chequeoMovimiento(int fila, int columna){

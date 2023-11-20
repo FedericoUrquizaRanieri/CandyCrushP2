@@ -259,6 +259,7 @@ public class GUI extends JFrame{
     public void juegoPerdido(){
         ImageIcon icono = new ImageIcon(Juego.class.getResource(Utils.skin+"/Extras/JuegoPerdido.gif"));
         JOptionPane.showMessageDialog(null, "Perdiste el nivel", ":(", JOptionPane.PLAIN_MESSAGE, icono);
+        System.exit(0);
     }
     public void abrirPanelScore(List<Par<String,Integer>> top) {
         miPanelScore.parsearScore(top);

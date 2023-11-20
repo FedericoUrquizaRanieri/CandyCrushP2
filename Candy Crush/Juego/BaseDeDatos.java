@@ -64,9 +64,7 @@ public class BaseDeDatos implements Serializable{
             top.add(new Par<String,Integer>(nombreActual, puntajeTotal));
         }
         ordenarLista(top);
-        for(int i=0;i<top.size();i++)
-            System.out.println(top.get(i).getClave());
-        }
+    }
 
     public void ordenarLista(List<Par<String,Integer>> top){
         int n = top.size();

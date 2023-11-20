@@ -44,8 +44,6 @@ public class GeneradorDeNivel {
         } catch(IOException e) {
             e.printStackTrace();
         }
-        //Imprime todo para verlo
-        System.out.println(objetivos.toString());
     }
     //Metodos
     public void parseLvl(int nivel, Tablero t, Nivel n){
@@ -63,15 +61,12 @@ public class GeneradorDeNivel {
                 if(obj.charAt(j)-48>0 && obj.charAt(j)-48<7){
                     t.ponerCaramelo(i,y,retColroes(obj.charAt(j)));
                     y++;
-                    System.out.print("C-");
                 } else if(obj.charAt(j)-64>0 && obj.charAt(j)-64<7){
                     t.ponerGelatina(i, y, retColroes(obj.charAt(j)-16));
                     y++;
-                    System.out.print(obj.charAt(j)+"-");
                 } else if(obj.charAt(j)-48==7){
                     t.ponerGlaseado(i,y);
                     y++;
-                    System.out.print("G-");
                 } else if(obj.charAt(j)-84>0){
                     t.ponerCruz(i, y, retColroes(obj.charAt(j)-36));
                     y++;
@@ -79,7 +74,6 @@ public class GeneradorDeNivel {
                     t.ponerBomba(i, y);
                     y++;
                 }
-            System.out.println();
             }
         }
         List<Boolean> ListaObjetivos = t.getCondiciones();
