@@ -7,7 +7,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class CentralAnimaciones implements ManejadorAnimaciones{
-
     //Atributos
     protected Panel gui;
     protected Queue<Animador> swapQueue, destroyQueue, fallingQueue;
@@ -77,6 +76,6 @@ public class CentralAnimaciones implements ManejadorAnimaciones{
 
     public void AnimacionesActivas(){
         if(swapQueue.isEmpty() && destroyQueue.isEmpty() && fallingQueue.isEmpty())
-            gui.notificar_Animaciones_terminadas();
+            gui.notificarAnimacionesTerminadas();
     }
 }

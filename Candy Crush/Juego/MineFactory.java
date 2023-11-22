@@ -9,12 +9,14 @@ public class MineFactory implements Factory{
     //Atributos
     private String pathCreador;
     private Juego miJuego;
-    //constructor
-    public MineFactory(Juego j){
+
+    //Constructor
+    public MineFactory(Juego juego){
         pathCreador="Minecraft";
-        miJuego = j;
+        miJuego = juego;
     }
-    @Override
+    
+    //Metodos
     public Caramelo crearCaramelo(int f, int c, Color color, Tablero t) {
         Caramelo e=new Caramelo(f,c,color, pathCreador);
         t.getGrilla()[f][c] = e;
@@ -31,7 +33,7 @@ public class MineFactory implements Factory{
         miJuego.getMiGUI().insertarEntidadGrafica(eg);
         return e;
     }
-    @Override
+    
     public Gelatina crearGelatina(int f, int c, Color color, Tablero t) {
         Gelatina g= new Gelatina(f,c,color,pathCreador);
         t.getGrilla()[f][c]=g;
@@ -44,7 +46,7 @@ public class MineFactory implements Factory{
         miJuego.getMiGUI().getPanel().setLayer(eg1, -1);
         return g;
     }
-    @Override
+    
     public Glaseado crearGlaseado(int f, int c, Tablero t) {
         Glaseado e=new Glaseado(f,c, pathCreador);
         t.getGrilla()[f][c] = e;
@@ -54,7 +56,7 @@ public class MineFactory implements Factory{
         t.addSubscriber(e);
         return e;
     }
-    @Override
+    
     public Bomba crearBomba(int f, int c, Tablero t) {
         Bomba e=new Bomba(f,c, pathCreador,t);
         t.getGrilla()[f][c] = e;
@@ -64,7 +66,7 @@ public class MineFactory implements Factory{
         t.addSubscriber(e);
         return e;
     }
-    @Override
+    
     public Cruz crearCruz(int f, int c, Color color, Tablero t) {
         Cruz g= new Cruz(f,c,color, pathCreador);
         t.getGrilla()[f][c]=g;
@@ -73,7 +75,7 @@ public class MineFactory implements Factory{
         miJuego.getMiGUI().insertarEntidadGrafica(eg1);
         return g;
     }
-    @Override
+    
     public Envuelto crearEnvuelto(int f, int c, Color color, Tablero t) {
         Envuelto e=new Envuelto(f,c,color, pathCreador);
         t.getGrilla()[f][c] = e;
@@ -82,7 +84,7 @@ public class MineFactory implements Factory{
         miJuego.getMiGUI().insertarEntidadGrafica(eg);
         return e;
     }
-    @Override
+    
     public RalladoH crearRalladoH(int f, int c, Color color, Tablero t) {
         RalladoH e=new RalladoH(f,c,color, pathCreador);
         t.getGrilla()[f][c] = e;
@@ -91,7 +93,7 @@ public class MineFactory implements Factory{
         miJuego.getMiGUI().insertarEntidadGrafica(eg);
         return e;
     }
-    @Override
+    
     public RalladoV crearRalladoV(int f, int c, Color color, Tablero t) {
         RalladoV e=new RalladoV(f,c,color, pathCreador);
         t.getGrilla()[f][c] = e;

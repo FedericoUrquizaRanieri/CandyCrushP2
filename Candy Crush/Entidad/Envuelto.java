@@ -4,13 +4,17 @@ import Juego.Juego;
 import Tablero.Tablero;
 
 public class Envuelto extends Caramelo{
+    //Atributos
     boolean explotando;
+
+    //Constructor
     public Envuelto(int f, int c, Color color, String path){
         super(f, c, color,path);
         this.explotando = false;
         imagePath = Juego.class.getResource(path+"/Envueltos/"+ color.toString().toUpperCase()+".png");
     }
 
+    //Metodos
     public Color getColor() {
         return color;
     }

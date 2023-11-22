@@ -7,11 +7,12 @@ import Juego.Juego;
 import Tablero.Tablero;
 
 public class Bomba extends Glaseado {
-    // Atributos
+    //Atributos
     protected int tiempo = (int) (Math.random() * ((55 - 25) + 1)) + 25;
     protected Tablero tablero;
     protected Timer timer;
 
+    //Constructor
     public Bomba(int f, int c, String path, Tablero t) {
         super(f, c, path);
         tablero = t;
@@ -20,7 +21,17 @@ public class Bomba extends Glaseado {
         timer.scheduleAtFixedRate(new contador(), 0, 1000);
     }
 
-    // Clase del tiempo
+    //Metodos
+    public void destruirse(Tablero t) {
+        timer.cancel();
+        timer.purge();
+        destruida = true;
+        eg.destruirse();
+        t.notificarDestruccionBomba();
+        tablero.aumentarPuntaje(150);
+    }
+
+    //Clase interna del tiempo
     class contador extends TimerTask {
         public void run() {
             if (tiempo > 0) {
@@ -30,17 +41,8 @@ public class Bomba extends Glaseado {
                 }
             }else{
                 destruirse(tablero);
-                tablero.terminar();
+                tablero.terminarNivel();
             }
         }
-    }
-
-    public void destruirse(Tablero t) {
-        timer.cancel();
-        timer.purge();
-        destruida = true;
-        eg.destruirse();
-        t.notificarDestruccionBomba();
-        tablero.aumentarPuntaje(150);
     }
 }

@@ -6,13 +6,14 @@ import Tablero.Tablero;
 import utils.Utils;
 
 public class Caramelo extends Entidad{
-
+    //Constructor
     public Caramelo(int f, int c, Color color, String path){
         super(f,c);
         imagePath = Juego.class.getResource(path+"/Caramelos/"+ color.toString().toLowerCase()+".png");
         this.color = color;
     }
 
+    //Metodos
     public void setEntidadGrafica(EntidadGrafica eg){
         this.eg = eg;
     }

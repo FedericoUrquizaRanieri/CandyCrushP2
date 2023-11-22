@@ -17,22 +17,18 @@ public class PanelScore extends JPanel{
     protected String nombreJugador;
     protected JFrame frame;
     protected JPanel panel;
-
     protected JLabel jugador1;
     protected JLabel jugador2;
     protected JLabel jugador3;
     protected JLabel jugador4;
     protected JLabel jugador5;
-
-    JLabel[] labelJugadores;
-
+    protected JLabel[] labelJugadores;
     protected JLabel score1;
     protected JLabel score2;
     protected JLabel score3;
     protected JLabel score4;
     protected JLabel score5;
-
-    JLabel[] labelScores;
+    protected JLabel[] labelScores;
 
     //Constructor
     public PanelScore(Juego juego){

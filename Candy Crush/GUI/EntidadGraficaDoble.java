@@ -12,6 +12,7 @@ public class EntidadGraficaDoble extends EntidadGrafica{
     //Atributos
     protected JLabel agregado;
     protected int tiempo=999;
+
     //Constructor
     public EntidadGraficaDoble(int x, int y, Entidad e, Panel panel) {
         super(x, y, e, panel);
@@ -23,6 +24,8 @@ public class EntidadGraficaDoble extends EntidadGrafica{
         agregado.setFont(new Font("TimesRoman", Font.BOLD, 30));
         this.add(agregado);
     }
+
+    //Metodos
     public void actualizarse(int time){
         this.tiempo=time;
         agregado.setText(String.valueOf(tiempo));

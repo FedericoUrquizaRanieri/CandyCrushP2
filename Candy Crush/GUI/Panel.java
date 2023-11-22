@@ -19,7 +19,7 @@ public class Panel extends JLayeredPane {
     protected static boolean bloquearIntercambios;
     protected CentralAnimaciones centralAnimaciones;
 
-    //constructor
+    //Constructor
     public Panel(Juego juego, JLabel jugador) {
         this.jugador = jugador;
         this.juego = juego;
@@ -137,7 +137,7 @@ public class Panel extends JLayeredPane {
         this.add(jugador);
     }
 
-    public void notificar_Animaciones_terminadas(){
+    public void notificarAnimacionesTerminadas(){
         juego.animacionesTerminadas();
     }
 }

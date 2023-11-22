@@ -19,6 +19,7 @@ public class AnimadorDestruccion extends Thread implements Animador{
         this.manager = manager;
     }
 
+    //Metodos
     public void run() {
         ImageIcon ico = new ImageIcon(Juego.class.getResource(Utils.skin+"/Extras/Explosion.png"));
         Image img = ico.getImage();

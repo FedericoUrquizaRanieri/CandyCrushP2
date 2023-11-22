@@ -27,14 +27,14 @@ public class GUI extends JFrame{
     protected Panel panel;
     protected JLabel labelInfo;
     protected JLabel jugador;
-    protected JLabel NivelActual;
+    protected JLabel nivelActual;
     protected JLabel tiempo;
     protected JLabel vidas;
     protected JLabel objetivo;
     protected JLabel movimientos;
-    protected JLabel PalabraScore; 
-    protected JLabel FotoObjetivo;
-    protected JLabel FotoMovimiento;
+    protected JLabel palabraScore; 
+    protected JLabel fotoObjetivo;
+    protected JLabel fotoMovimiento;
     protected JLabel score;
     protected PanelScore miPanelScore;
 
@@ -65,13 +65,13 @@ public class GUI extends JFrame{
         ImageIcon fondoInfo = new ImageIcon(Juego.class.getResource(Utils.skin+"/Fondo2.png"));
         labelInfo.setIcon(new ImageIcon(fondoInfo.getImage().getScaledInstance(350, Utils.panelHeight(), Image.SCALE_SMOOTH)));
         
-        NivelActual = new JLabel();
-        NivelActual.setText(String.valueOf("Nivel  "+n.getNivel()));
-        NivelActual.setBounds(10, 0, 90, 90);
-        NivelActual.setForeground(Color.WHITE);
-        NivelActual.setHorizontalAlignment(SwingConstants.CENTER);
-        NivelActual.setFont(new Font("TimesRoman", Font.BOLD, 27));
-        labelInfo.add(NivelActual);
+        nivelActual = new JLabel();
+        nivelActual.setText(String.valueOf("Nivel  "+n.getNivel()));
+        nivelActual.setBounds(10, 0, 90, 90);
+        nivelActual.setForeground(Color.WHITE);
+        nivelActual.setHorizontalAlignment(SwingConstants.CENTER);
+        nivelActual.setFont(new Font("TimesRoman", Font.BOLD, 27));
+        labelInfo.add(nivelActual);
       
 
         tiempo = new JLabel();
@@ -100,11 +100,11 @@ public class GUI extends JFrame{
         labelInfo.add(vidas);
 
         ImageIcon imagenCaramelo = new ImageIcon(Juego.class.getResource(Utils.skin+"/Caramelos/amarillo.png"));
-        FotoObjetivo = new JLabel();
-        FotoObjetivo.setBounds(45, 300, 80, 80);
-        FotoObjetivo.setIcon(new ImageIcon(imagenCaramelo.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
-        FotoObjetivo.setOpaque(false);
-        labelInfo.add(FotoObjetivo);
+        fotoObjetivo = new JLabel();
+        fotoObjetivo.setBounds(45, 300, 80, 80);
+        fotoObjetivo.setIcon(new ImageIcon(imagenCaramelo.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
+        fotoObjetivo.setOpaque(false);
+        labelInfo.add(fotoObjetivo);
 
         objetivo = new JLabel();
         objetivo.setText(String.valueOf(2));
@@ -116,11 +116,11 @@ public class GUI extends JFrame{
         labelInfo.add(objetivo);
 
         ImageIcon imagenMovimiento = new ImageIcon(Juego.class.getResource(Utils.skin+"/Extras/Velocidad.png"));
-        FotoMovimiento = new JLabel();
-        FotoMovimiento.setBounds(45, 420, 80, 80);
-        FotoMovimiento.setIcon(new ImageIcon(imagenMovimiento.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
-        FotoMovimiento.setOpaque(false);
-        labelInfo.add(FotoMovimiento);
+        fotoMovimiento = new JLabel();
+        fotoMovimiento.setBounds(45, 420, 80, 80);
+        fotoMovimiento.setIcon(new ImageIcon(imagenMovimiento.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
+        fotoMovimiento.setOpaque(false);
+        labelInfo.add(fotoMovimiento);
 
         movimientos = new JLabel();
         movimientos.setText("");
@@ -131,14 +131,14 @@ public class GUI extends JFrame{
         movimientos.setFont(new Font("TimesRoman", Font.BOLD, 65));
         labelInfo.add(movimientos);
 
-        PalabraScore = new JLabel();
-        PalabraScore.setText("Score: ");
-        PalabraScore.setBounds(15, 500, 120, 120);
-        PalabraScore.setHorizontalAlignment(SwingConstants.CENTER);
-        PalabraScore.setForeground(Color.white);
-        PalabraScore.setOpaque(false);
-        PalabraScore.setFont(new Font("TimesRoman", Font.BOLD, 40));
-        labelInfo.add(PalabraScore);
+        palabraScore = new JLabel();
+        palabraScore.setText("Score: ");
+        palabraScore.setBounds(15, 500, 120, 120);
+        palabraScore.setHorizontalAlignment(SwingConstants.CENTER);
+        palabraScore.setForeground(Color.white);
+        palabraScore.setOpaque(false);
+        palabraScore.setFont(new Font("TimesRoman", Font.BOLD, 40));
+        labelInfo.add(palabraScore);
 
         score  = new JLabel();
         score.setText("");
@@ -169,39 +169,39 @@ public class GUI extends JFrame{
         return panel;
     }
     public void notificarMovimiento(){
-        Nivel n = juego.getNivel();
-        movimientos.setText(String.valueOf(n.getMov()));
-        vidas.setText(String.valueOf(n.getVidas()));
+        Nivel miNivel = juego.getNivel();
+        movimientos.setText(String.valueOf(miNivel.getMov()));
+        vidas.setText(String.valueOf(miNivel.getVidas()));
         score.setText(String.valueOf(juego.getPuntaje()));
-        NivelActual.setText(String.valueOf("Nivel "+n.getNivel()));
+        nivelActual.setText(String.valueOf("Nivel "+miNivel.getNivel()));
         ImageIcon ico = new ImageIcon();
-        if(n.getObjetivoCaramelo()>0){
-            ico = new ImageIcon(Juego.class.getResource(Utils.skin+"/Caramelos/"+ n.getColorObjetivo().toString().toLowerCase()+".png"));
-            objetivo.setText(String.valueOf(n.getObjetivoCaramelo()));
+        if(miNivel.getObjetivoCaramelo()>0){
+            ico = new ImageIcon(Juego.class.getResource(Utils.skin+"/Caramelos/"+ miNivel.getColorObjetivo().toString().toLowerCase()+".png"));
+            objetivo.setText(String.valueOf(miNivel.getObjetivoCaramelo()));
         }
         else{
-            if(n.getObjetivoGelatina()>0){
+            if(miNivel.getObjetivoGelatina()>0){
                 ico = new ImageIcon(Juego.class.getResource(Utils.skin+"/Extras/Gelatina.png"));
-                objetivo.setText(String.valueOf(n.getObjetivoGelatina()));
+                objetivo.setText(String.valueOf(miNivel.getObjetivoGelatina()));
             }
             else{
-                if(n.getObjetivoGlaseado()>0){
+                if(miNivel.getObjetivoGlaseado()>0){
                     ico = new ImageIcon(Juego.class.getResource(Utils.skin+"/Extras/Merengue.png"));
-                    objetivo.setText(String.valueOf(n.getObjetivoGlaseado()));
+                    objetivo.setText(String.valueOf(miNivel.getObjetivoGlaseado()));
                 }
                 else{
-                    if(n.getObjetivoEnvuelto()>0){
+                    if(miNivel.getObjetivoEnvuelto()>0){
                         ico = new ImageIcon(Juego.class.getResource(Utils.skin+"/Extras/EnvueltoObjetivo.png"));
-                        objetivo.setText(String.valueOf(n.getObjetivoEnvuelto()));
+                        objetivo.setText(String.valueOf(miNivel.getObjetivoEnvuelto()));
                 }
                     else{
-                        if(n.getObjetivoCruz()>0){
+                        if(miNivel.getObjetivoCruz()>0){
                         ico = new ImageIcon(Juego.class.getResource(Utils.skin+"/Cruz/ROSA.png"));
-                        objetivo.setText(String.valueOf(n.getObjetivoCruz()));
+                        objetivo.setText(String.valueOf(miNivel.getObjetivoCruz()));
                         }
                         else{
                             ico = new ImageIcon(Juego.class.getResource(Utils.skin+"/Extras/Bomba.png"));
-                            objetivo.setText(String.valueOf(n.getObjetivoBomba()));
+                            objetivo.setText(String.valueOf(miNivel.getObjetivoBomba()));
                         }
                     }
                 }
@@ -209,7 +209,7 @@ public class GUI extends JFrame{
         }
         Image img = ico.getImage();
         Image new_img = img.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
-        FotoObjetivo.setIcon(new ImageIcon(new_img));
+        fotoObjetivo.setIcon(new ImageIcon(new_img));
     }
     public void limpiarPanel() {
         panel.limpiar();

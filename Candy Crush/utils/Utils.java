@@ -3,12 +3,14 @@ package utils;
 import Entidad.Color;
 
 public class Utils {
+    //Atributos
     public static int labelWidth = 60;
     public static int labelHeight = 60;
     public static int labelSpacing = 5;
     public static int dimension = 10;
     public static String skin="Minecraft";
 
+    //Metodos
     public static int panelWidth() {
         return dimension * labelWidth + (dimension + 1) * labelSpacing;
     }

@@ -4,15 +4,17 @@ import Juego.Juego;
 import Tablero.Tablero;
 
 public class Gelatina extends Entidad{
-
+    //Atributos
     private Caramelo caramelo;
 
+    //Constructor
     public Gelatina(int f, int c, Color color,String path){
         super(f,c);
         imagePath = Juego.class.getResource(path+"/Extras/Gelatina.png");
         caramelo = new Caramelo(f,c, color, path);
     }
 
+    //Metodos
     public Color getColor() {
         return caramelo.getColor();
     }
@@ -39,8 +41,6 @@ public class Gelatina extends Entidad{
         tablero.getGrilla()[this.caramelo.getFila()][this.caramelo.getColumna()] = this.caramelo;
         this.caramelo.getEntidadGrafica().notificarCambioPosicion(caramelo.getEntidadGrafica());
         this.caramelo = caramelo;
-
-
     }
 
     public void cambiarPosicion(Gelatina gelatina, Tablero tablero) {

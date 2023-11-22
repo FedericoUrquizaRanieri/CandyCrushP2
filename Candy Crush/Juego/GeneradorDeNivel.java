@@ -14,6 +14,7 @@ public class GeneradorDeNivel {
     //Atributos
     private List<List<String>> objetivos;
     private static String archivos[]=new String[]{"Archivo1.txt","Archivo2.txt","Archivo3.txt","Archivo4.txt","Archivo5.txt"};
+    
     //Constructor
     public GeneradorDeNivel() {
         objetivos = new ArrayList<>();
@@ -45,13 +46,14 @@ public class GeneradorDeNivel {
             e.printStackTrace();
         }
     }
+
     //Metodos
     public void parseLvl(int nivel, Tablero t, Nivel n){
         generarCaramelos(nivel, t);
         generarNivel(nivel, n);
     }
-    //Imprime la grilla inicial ademas de generarlos
-    private void generarCaramelos(int n,Tablero t){
+    
+    private void generarCaramelos(int n,Tablero t){ //Imprime la grilla inicial ademas de generarlos
         String obj=null;
         int y;
         for(int i=0;i<10;i++){

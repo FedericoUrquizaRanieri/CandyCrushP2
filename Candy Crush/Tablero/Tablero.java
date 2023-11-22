@@ -10,7 +10,6 @@ import Juego.*;
 import utils.Utils;
 
 public class Tablero{
-
     //Atributos
     protected int posJugadorX;
     protected int posJugadorY;
@@ -24,8 +23,8 @@ public class Tablero{
     protected Factory miFabrica;
 
     //Constructor
-    public Tablero(Juego j, BaseDeDatos b){
-        miJuego=j;
+    public Tablero(Juego juego, BaseDeDatos b){
+        miJuego=juego;
         dimension = Utils.dimension;
         grilla = new Entidad[dimension][dimension];
         posJugadorX=0;
@@ -262,7 +261,7 @@ public class Tablero{
             misSubscriptores.poll().avisar(this);
     }
 
-    public void terminar(){
-        miJuego.terminar();
+    public void terminarNivel(){
+        miJuego.terminarNivel();
     }
 }

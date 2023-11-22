@@ -19,6 +19,7 @@ public class AnimadorCaida extends Thread implements Animador{
         this.delay = delay;
     }
 
+    //Metodos
     public void run() {
         int posY = entidadGrafica.getY();
         boolean stopY = posY == toY;

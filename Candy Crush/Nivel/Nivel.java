@@ -29,26 +29,7 @@ public class Nivel{
         tiempo = 300000;
         time = new contadorTiempo();
     }
-    //Clase del tiempo
-        class contadorTiempo {
-        Timer t;
-        public contadorTiempo() {
-            t = new Timer();
-            t.scheduleAtFixedRate(new contador(), 0,1000);
-        }
-        class contador extends TimerTask {
-            public void run() {
-                if (tiempo > 0) {
-                    tiempo--;
-                    if(miJuego.getMiGUI()!=null)
-                        miJuego.getMiGUI().notificarTiempo(tiempo);
-                }
-                else {
-                    restarVida();
-                }
-            }
-        }
-    }
+    
     //Metodos
     public void restarVida(){
         vidas--;
@@ -171,5 +152,26 @@ public class Nivel{
     }
     public void setNivel(int numero){
         nivel = numero;
+    }
+
+    //Clase interna del tiempo
+    class contadorTiempo {
+        Timer t;
+        public contadorTiempo() {
+            t = new Timer();
+            t.scheduleAtFixedRate(new contador(), 0,1000);
+        }
+        class contador extends TimerTask {
+            public void run() {
+                if (tiempo > 0) {
+                    tiempo--;
+                    if(miJuego.getMiGUI()!=null)
+                        miJuego.getMiGUI().notificarTiempo(tiempo);
+                }
+                else {
+                    restarVida();
+                }
+            }
+        }
     }
 }

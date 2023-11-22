@@ -4,12 +4,17 @@ import Juego.Juego;
 import Tablero.Tablero;
 
 public class Cruz extends Caramelo{
+    //Atributos
     boolean explotando;
+
+    //Constructor
     public Cruz(int f, int c, Color color,String path) {
         super(f, c, color, path);
         this.explotando = false;
         imagePath = Juego.class.getResource(path+"/Cruz/"+color.toString().toLowerCase()+".png");
     }
+
+    //Metodos
     public void destruirse(Tablero t){
         if(!explotando) {
             explotando = true;

@@ -94,7 +94,7 @@ public class Juego{
         return miGUI;
     }
 
-    public void asociar_entidad_grafica(EntidadGrafica entidadGrafica) {
+    public void asociarEntidadGrafica(EntidadGrafica entidadGrafica) {
         miGUI.insertarEntidadGrafica(entidadGrafica);
     }
 
@@ -137,7 +137,7 @@ public class Juego{
     public void llamarNivelPerdido(){
         miGUI.nivelPerdido();
     }
-    public void terminar(){
+    public void terminarNivel(){
         miNivel.terminarNivel();
     }
 

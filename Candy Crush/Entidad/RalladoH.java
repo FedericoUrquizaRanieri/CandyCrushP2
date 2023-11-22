@@ -4,13 +4,17 @@ import Juego.Juego;
 import Tablero.Tablero;
 
 public class RalladoH extends Caramelo{
+    //Atributos
     boolean explotando;
+
+    //Constructor
     public RalladoH(int f, int c, Color color,String path){
         super(f, c, color,path);
         this.explotando = false;
         imagePath = Juego.class.getResource(path+"/Rayados/RayadosH/"+ color.toString().toUpperCase()+".png");
-
     }
+
+    //Metodos
     public void destruirse(Tablero t){
         if(!explotando) {
             explotando = true;

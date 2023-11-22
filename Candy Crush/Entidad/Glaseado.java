@@ -4,11 +4,14 @@ import Juego.Juego;
 import Tablero.Tablero;
 
 public class Glaseado extends Entidad implements Subscriber{
+    //Constructor
     public Glaseado(int f, int c, String path){
         super(f,c);
         imagePath = Juego.class.getResource(path+"/Extras/Merengue.png");
         this.color = Color.NEGRO;
     }
+
+    //Metodos
     public void destruirse(Tablero t){
         destruida = true;
         eg.destruirse();

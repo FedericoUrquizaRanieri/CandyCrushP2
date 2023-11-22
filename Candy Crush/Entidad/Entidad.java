@@ -7,6 +7,8 @@ import Tablero.Tablero;
 import utils.Utils;
 
 public abstract class Entidad implements Intercambiable, Destruible, Matcheable, Caida{
+
+    //Atributos
     protected EntidadGrafica eg;
     protected Color color;
     protected int fila;
@@ -15,12 +17,14 @@ public abstract class Entidad implements Intercambiable, Destruible, Matcheable,
     protected boolean destruida;
     protected int puntaje;
 
+    //Constructor
     protected Entidad(int fila, int columna) {
         this.fila = fila;
         this.columna = columna;
         this.destruida = false;
     }
 
+    //Metodos
     public void setEntidadGrafica(EntidadGrafica eg){
         this.eg = eg;
     }
@@ -32,7 +36,9 @@ public abstract class Entidad implements Intercambiable, Destruible, Matcheable,
     public Color getColor() {
         return color;
     }
-    public void chequeoDestruccion(Tablero tablero) {}
+    public void chequeoDestruccion(Tablero tablero) {
+
+    }
     public void cambiarPosicion(int fila, int columna) {
         eg.notificarCaida(Utils.labelPositionX(columna), Utils.labelPositionY(fila));
         this.fila = fila;

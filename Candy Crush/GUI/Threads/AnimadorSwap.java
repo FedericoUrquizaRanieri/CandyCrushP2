@@ -3,7 +3,6 @@ package GUI.Threads;
 import GUI.EntidadGrafica;
 
 public class AnimadorSwap extends Thread implements Animador{
-
     //Atributos
     protected EntidadGrafica entidadGrafica1;
     protected EntidadGrafica entidadGrafica2;
@@ -18,6 +17,7 @@ public class AnimadorSwap extends Thread implements Animador{
         this.delay = delay;
     }
 
+    //Metodos
     public void run() {
         int eg2_toX = entidadGrafica1.getX();
         int eg2_toY = entidadGrafica1.getY();

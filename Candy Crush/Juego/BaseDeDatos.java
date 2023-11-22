@@ -5,16 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseDeDatos implements Serializable{
+    //Atributos
     private int puntajeTotal;
     private int puntajeActual;
     private String nombreActual;
     protected List<Par<String,Integer>> top = new ArrayList<>(5);
 
+    //Constructor
     public BaseDeDatos() {
         this.puntajeActual = 0;
         this.puntajeTotal = 0;
     }
 
+    //Metodos
     public void aumentarPuntaje(int punt) {
         puntajeActual += punt;
     }
