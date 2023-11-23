@@ -18,25 +18,25 @@ public class Glaseado extends Entidad implements Subscriber{
         t.notificarDestruccionGlaseado();
         t.aumentarPuntaje(25);
     }
-    public boolean se_destruye_con(Entidad entidad) {
-        return entidad.se_destruyen(this);
+    public boolean seDestruyeCon(Entidad entidad) {
+        return entidad.seDestruyen(this);
     }
     public void chequeoDestruccion(Tablero tablero){
         destruirse(tablero);
     }
-    public boolean se_destruyen(Caramelo caramelo) {
+    public boolean seDestruyen(Caramelo caramelo) {
         return false;
     }
-    public boolean se_destruyen(RalladoH ralladoH) {
+    public boolean seDestruyen(RalladoH ralladoH) {
         return false;
     }
-    public boolean se_destruyen(RalladoV ralladoV) {
+    public boolean seDestruyen(RalladoV ralladoV) {
         return false;
     }
-    public boolean se_destruyen(Envuelto envuelto) {
+    public boolean seDestruyen(Envuelto envuelto) {
         return false;
     }
-    public boolean se_destruyen(Cruz cruz) {
+    public boolean seDestruyen(Cruz cruz) {
         return false;
     }
 
@@ -44,25 +44,25 @@ public class Glaseado extends Entidad implements Subscriber{
     public void cambiarPosicion(Caramelo caramelo, Tablero tablero) {}
     public void cambiarPosicion(Gelatina gelatina, Tablero tablero) {}
 
-    public boolean es_posible_intercambiar(Entidad e) {
+    public boolean esPosibleIntercambiar(Entidad e) {
         return false;
     };
-    public boolean puede_recibir(Caramelo c) {
+    public boolean puedeRecibir(Caramelo c) {
         return false;
     }
-    public boolean puede_recibir(Glaseado g) {
+    public boolean puedeRecibir(Glaseado g) {
         return false;
     }
-    public boolean puede_recibir(Envuelto p) {
+    public boolean puedeRecibir(Envuelto p) {
         return false;
     }
-    public boolean puede_recibir(RalladoH rh) {
+    public boolean puedeRecibir(RalladoH rh) {
         return false;
     }
-    public boolean puede_recibir(RalladoV rv) {
+    public boolean puedeRecibir(RalladoV rv) {
         return false;
     }
-    public boolean puede_recibir(Cruz cruz) {
+    public boolean puedeRecibir(Cruz cruz) {
         return false;
     }
 
@@ -70,27 +70,27 @@ public class Glaseado extends Entidad implements Subscriber{
         return false;
     }
 
-    public boolean match_with(Caramelo caramelo) {
+    public boolean matchWith(Caramelo caramelo) {
         return false;
     }
 
-    public boolean match_with(RalladoH ralladoH) {
+    public boolean matchWith(RalladoH ralladoH) {
         return false;
     }
 
-    public boolean match_with(RalladoV ralladoV) {
+    public boolean matchWith(RalladoV ralladoV) {
         return false;
     }
 
-    public boolean match_with(Envuelto envuelto) {
+    public boolean matchWith(Envuelto envuelto) {
         return false;
     }
 
-    public boolean match_with(Glaseado glaseado) {
+    public boolean matchWith(Glaseado glaseado) {
         return false;
     }
 
-    public boolean match_with(Cruz cruz) {
+    public boolean matchWith(Cruz cruz) {
         return false;
     }
 

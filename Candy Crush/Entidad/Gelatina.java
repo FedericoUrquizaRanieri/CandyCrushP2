@@ -71,66 +71,66 @@ public class Gelatina extends Entidad{
             t.aumentarPuntaje(10);
         }
     }
-    public boolean se_destruye_con(Entidad entidad) {
-        return entidad.se_destruyen(caramelo);
+    public boolean seDestruyeCon(Entidad entidad) {
+        return entidad.seDestruyen(caramelo);
     }
-    public boolean se_destruyen(Caramelo caramelo) {
+    public boolean seDestruyen(Caramelo caramelo) {
         return false;
     }
-    public boolean se_destruyen(RalladoH ralladoH) {
-        return ralladoH.se_destruyen(caramelo);
+    public boolean seDestruyen(RalladoH ralladoH) {
+        return ralladoH.seDestruyen(caramelo);
     }
-    public boolean se_destruyen(RalladoV ralladoV) {
-        return ralladoV.se_destruyen(caramelo);
+    public boolean seDestruyen(RalladoV ralladoV) {
+        return ralladoV.seDestruyen(caramelo);
     }
-    public boolean se_destruyen(Envuelto envuelto) {
-        return envuelto.se_destruyen(caramelo);
+    public boolean seDestruyen(Envuelto envuelto) {
+        return envuelto.seDestruyen(caramelo);
     }
-    public boolean se_destruyen(Cruz cruz) {
-        return cruz.se_destruyen(caramelo);
+    public boolean seDestruyen(Cruz cruz) {
+        return cruz.seDestruyen(caramelo);
     }
 
-    public boolean es_posible_intercambiar(Entidad e) {
-        return e.puede_recibir(this.getCaramelo());
+    public boolean esPosibleIntercambiar(Entidad e) {
+        return e.puedeRecibir(this.getCaramelo());
     };
-    public boolean puede_recibir(Caramelo c) {
+    public boolean puedeRecibir(Caramelo c) {
         return true;
     }
-    public boolean puede_recibir(Glaseado g) {
+    public boolean puedeRecibir(Glaseado g) {
         return false;
     }
-    public boolean puede_recibir(Envuelto p) {
+    public boolean puedeRecibir(Envuelto p) {
         return true;
     }
-    public boolean puede_recibir(RalladoH rh) {
+    public boolean puedeRecibir(RalladoH rh) {
         return true;
     }
-    public boolean puede_recibir(RalladoV rv) {
+    public boolean puedeRecibir(RalladoV rv) {
         return true;
     }
-    public boolean puede_recibir(Cruz cruz) {
+    public boolean puedeRecibir(Cruz cruz) {
         return true;
     }
 
     public boolean match(Entidad entidad) {
-        return entidad.match_with(this.caramelo);
+        return entidad.matchWith(this.caramelo);
     }
-    public boolean match_with(Caramelo caramelo) {
+    public boolean matchWith(Caramelo caramelo) {
         return this.caramelo.getColor() == caramelo.getColor();
     }
-    public boolean match_with(RalladoH ralladoH) {
+    public boolean matchWith(RalladoH ralladoH) {
         return this.caramelo.getColor() == ralladoH.getColor();
     }
-    public boolean match_with(RalladoV ralladoV) {
+    public boolean matchWith(RalladoV ralladoV) {
         return this.caramelo.getColor() == ralladoV.getColor();
     }
-    public boolean match_with(Envuelto envuelto) {
+    public boolean matchWith(Envuelto envuelto) {
         return this.caramelo.getColor() == envuelto.getColor();
     }
-    public boolean match_with(Glaseado glaseado) {
+    public boolean matchWith(Glaseado glaseado) {
         return false;
     }
-    public boolean match_with(Cruz cruz) {
+    public boolean matchWith(Cruz cruz) {
         return this.caramelo.getColor() == cruz.getColor();
     }
 

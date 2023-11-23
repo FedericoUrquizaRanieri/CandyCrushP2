@@ -39,22 +39,22 @@ public class Envuelto extends Caramelo{
         }
     }
 
-    public boolean se_destruye_con(Entidad entidad) {
-        return entidad.se_destruyen(this);
+    public boolean seDestruyeCon(Entidad entidad) {
+        return entidad.seDestruyen(this);
     }
-    public boolean se_destruyen(RalladoH ralladoH) {
+    public boolean seDestruyen(RalladoH ralladoH) {
         return true;
     }
-    public boolean se_destruyen(RalladoV ralladoV) {
+    public boolean seDestruyen(RalladoV ralladoV) {
         return true;
     }
-    public boolean se_destruyen(Envuelto envuelto) {
+    public boolean seDestruyen(Envuelto envuelto) {
         return true;
     }
-    public boolean se_destruyen(Cruz cruz) {
+    public boolean seDestruyen(Cruz cruz) {
         return true;
     }
-    public boolean es_posible_intercambiar(Entidad e) {
-        return e.puede_recibir(this);
+    public boolean esPosibleIntercambiar(Entidad e) {
+        return e.puedeRecibir(this);
     }
 }

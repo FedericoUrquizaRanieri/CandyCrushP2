@@ -4,11 +4,11 @@ import Tablero.Tablero;
 
 public interface Destruible {
     public void destruirse(Tablero t);
-    public boolean se_destruye_con(Entidad entidad);
-    public boolean se_destruyen(Glaseado glaseado);
-    public boolean se_destruyen(Caramelo caramelo);
-    public boolean se_destruyen(RalladoH ralladoH);
-    public boolean se_destruyen(RalladoV ralladoV);
-    public boolean se_destruyen(Envuelto envuelto);
-    public boolean se_destruyen(Cruz cruz);
+    public boolean seDestruyeCon(Entidad entidad);
+    public boolean seDestruyen(Glaseado glaseado);
+    public boolean seDestruyen(Caramelo caramelo);
+    public boolean seDestruyen(RalladoH ralladoH);
+    public boolean seDestruyen(RalladoV ralladoV);
+    public boolean seDestruyen(Envuelto envuelto);
+    public boolean seDestruyen(Cruz cruz);
 }

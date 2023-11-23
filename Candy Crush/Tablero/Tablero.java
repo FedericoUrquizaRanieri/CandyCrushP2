@@ -83,11 +83,11 @@ public class Tablero{
     public void swap(int x, int y) {
         Entidad e1 = grilla[x][y];
         Entidad e2 = grilla[posJugadorX][posJugadorY];
-        if(e2.es_posible_intercambiar(e1)) {
+        if(e2.esPosibleIntercambiar(e1)) {
             e1.cambiarPosicionCon(e2, this);
             e1 = grilla[x][y];
             e2 = grilla[posJugadorX][posJugadorY];
-            if (e1.se_destruye_con(e2)) {
+            if (e1.seDestruyeCon(e2)) {
                 e1.destruirse(this);
                 e2.destruirse(this);
                 ordenarColumnas();

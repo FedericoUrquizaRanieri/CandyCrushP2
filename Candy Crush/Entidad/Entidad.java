@@ -44,7 +44,7 @@ public abstract class Entidad implements Intercambiable, Destruible, Matcheable,
         this.fila = fila;
         this.columna = columna;
     }
-    public boolean se_destruyen(Glaseado glaseado) {
+    public boolean seDestruyen(Glaseado glaseado) {
         return false;
     }
     public URL getImage(){
