@@ -63,6 +63,9 @@ public class Juego{
     public void notificarDestruccionBomba() {
         miNivel.restarBomba();
     }
+    public void notificarDestruccionCruz() {
+        miNivel.restarCruz();
+    }
 
     public void regenerar(int nivel){
         miGUI.limpiarPanel();

@@ -117,6 +117,9 @@ public class Tablero{
     public void notificarDestruccionBomba() {
         miJuego.notificarDestruccionBomba();
     }
+    public void notificarDestruccionCruz() {
+        miJuego.notificarDestruccionCruz();
+    }
 
     public boolean chequeoMovimiento(int fila, int columna){
         return checkCombinaciones(fila, columna);

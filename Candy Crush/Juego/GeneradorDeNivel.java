@@ -79,6 +79,7 @@ public class GeneradorDeNivel {
             }
         }
         List<Boolean> ListaObjetivos = t.getCondiciones();
+        ListaObjetivos.clear();
         for(int j=0;j<6;j++){
             ListaObjetivos.add(objetivos.get(n-1).get(23).charAt(j)!='0');
         }

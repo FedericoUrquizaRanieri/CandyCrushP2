@@ -9,9 +9,9 @@ ObjetivosAzules
 ObjetivosMerengues
 ObjetivosGelatina
 ObjetivoEnvuelto
-Objetivo Bomba
-Objetivo Cruz
 CaramelosEnGrilla
+Objetivo Cruz
+Objetivo Bomba
 Seleccion de chequeos (Check3, check4, check5, checkL, checkT, check+)
 ------------------------
 Caramelo Verde=1

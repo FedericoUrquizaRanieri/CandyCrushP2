@@ -135,6 +135,12 @@ public class Nivel{
             miJuego.getMiGUI().notificarObjetivoBomba();
         }
     }
+    public void restarCruz() {
+        if(objetivoCruz>0){
+            objetivoCruz--;
+            miJuego.getMiGUI().notificarObjetivoCruz();
+        }
+    }
     public void restarMov(){
         if(movimientos>0){
             movimientos--;
@@ -148,7 +154,7 @@ public class Nivel{
         return nivel;
     }
     public boolean objetivosTerminados(){
-        return (objetivoCaramelo<=0 && objetivoGelatina<=0 && objetivoGlaseado<=0 && objetivoEnvuelto<=0);
+        return (objetivoCaramelo<=0 && objetivoGelatina<=0 && objetivoGlaseado<=0 && objetivoEnvuelto<=0 && objetivoCruz<=0 && objetivoBomba<=0);
     }
     public void setNivel(int numero){
         nivel = numero;

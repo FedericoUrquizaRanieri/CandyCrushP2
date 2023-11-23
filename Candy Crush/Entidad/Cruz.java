@@ -30,6 +30,7 @@ public class Cruz extends Caramelo{
             }
             destruida = true;
             t.notificarDestruccion(this.color);
+            t.notificarDestruccionCruz();
             eg.destruirse();
             t.aumentarPuntaje(100);
         }
