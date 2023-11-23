@@ -1,6 +1,7 @@
 package Juego;
 import java.awt.EventQueue;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -30,7 +31,10 @@ public class Juego{
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             miBaseDeDatos = (BaseDeDatos) objectInputStream.readObject();
             objectInputStream.close(); 
-        }catch(ClassNotFoundException | IOException e){
+        }catch(ClassNotFoundException e){
+        e.printStackTrace();
+        }catch(FileNotFoundException e){
+        }catch(IOException e){
         e.printStackTrace();
         }
         new PanelMenu(this);
