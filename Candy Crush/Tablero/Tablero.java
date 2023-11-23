@@ -18,7 +18,6 @@ public class Tablero{
     protected int dimension;
     private final Color[] colores = {Color.AZUL, Color.AMARILLO, Color.ROJO, Color.NARANJA, Color.ROSA, Color.VERDE};
     protected List<Boolean> condiciones;
-    protected BaseDeDatos miBaseDeDatos;
     protected Queue<Subscriber> misSubscriptores;
     protected Factory miFabrica;
 
@@ -30,9 +29,7 @@ public class Tablero{
         posJugadorX=0;
         posJugadorY=0;
         condiciones= new ArrayList<>();
-        this.miBaseDeDatos = b;
         this.misSubscriptores = new LinkedList<>();
-        miBaseDeDatos = b;
         if(Utils.skin=="Minecraft")
             miFabrica = new MineFactory(miJuego);
         else
@@ -251,7 +248,7 @@ public class Tablero{
     }
 
     public void aumentarPuntaje(int puntaje) {
-        miBaseDeDatos.aumentarPuntaje(puntaje);
+        miJuego.aumentarPuntaje(puntaje);
     }
 
     public void addSubscriber(Subscriber subscriber) {

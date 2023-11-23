@@ -67,6 +67,10 @@ public class Juego{
         miNivel.restarCruz();
     }
 
+    public void aumentarPuntaje(int puntaje){
+        miBaseDeDatos.aumentarPuntaje(puntaje);
+    }
+
     public void regenerar(int nivel){
         miGUI.limpiarPanel();
         miGenerador.parseLvl(nivel,miTablero,miNivel);
