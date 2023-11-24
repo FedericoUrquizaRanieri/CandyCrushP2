@@ -6,9 +6,9 @@ import java.util.List;
 
 public class BaseDeDatos implements Serializable{
     //Atributos
-    private int puntajeTotal;
-    private int puntajeActual;
-    private String nombreActual;
+    protected int puntajeTotal;
+    protected int puntajeActual;
+    protected String nombreActual;
     protected List<Par<String,Integer>> top = new ArrayList<>(5);
 
     //Constructor
