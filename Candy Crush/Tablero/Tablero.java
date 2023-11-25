@@ -30,10 +30,7 @@ public class Tablero{
         posJugadorY=0;
         condiciones= new ArrayList<>();
         this.misSubscriptores = new LinkedList<>();
-        if(Utils.skin=="Minecraft")
-            miFabrica = new MineFactory(miJuego);
-        else
-            miFabrica = new CandyFactory(miJuego);
+        miFabrica = generateFactory();
     }
 
     //Metodos
@@ -260,5 +257,9 @@ public class Tablero{
 
     public void terminarNivel(){
         miJuego.terminarNivel();
+    }
+
+    public Factory generateFactory() {
+        return Utils.skin.equals("Minecraft") ? new MineFactory(miJuego) : new CandyFactory(miJuego); 
     }
 }
