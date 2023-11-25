@@ -171,13 +171,13 @@ public class Tablero{
             }
         }
         int cursor = 0;
-        if(!horizontales.isEmpty() && !verticales.isEmpty() && (condiciones.get(3) || condiciones.get(4) || condiciones.get(5))) {
+        if(!horizontales.isEmpty() && !verticales.isEmpty() && condicionEspeciales()) {
             huboCambios = true;
             for(int i = 0; i<6; i++) {
-                if(condiciones.get(5) && (horizontales.size() == 5 && verticales.size() == 5)){ // Caso de un MAS
+                if(condicionMatchMas() && (horizontales.size() == 5 && verticales.size() == 5)){ // Caso de un MAS
                     horizontales.get(i).destruirse(this);
                     verticales.get(i).destruirse(this);
-                } else if(condiciones.get(4) && (horizontales.size() == 5 || verticales.size() == 5)) { // Caso de una T
+                } else if(condicionMatchT() && (horizontales.size() == 5 || verticales.size() == 5)) { // Caso de una T
                     if(horizontales.size() == 5 && verticales.size() == 5) {
                         if(cursor < 3)
                             horizontales.get(cursor).destruirse(this);
@@ -187,7 +187,7 @@ public class Tablero{
                         verticales.get(i).destruirse(this);
                     }
                     cursor++;
-                } else if(condiciones.get(3)) { // Caso de una L
+                } else if(condicionMatchL()) { // Caso de una L
                     if(cursor < 3) {
                         horizontales.get(cursor).destruirse(this);
                         verticales.get(cursor).destruirse(this);
@@ -198,21 +198,21 @@ public class Tablero{
             for (int i = 0; i < horizontales.size(); i++)
                 if(verticales.contains(horizontales.get(i)))
                     miFabrica.crearEnvuelto(x,y,color,this);
-        } else if((!horizontales.isEmpty() || !verticales.isEmpty()) && (condiciones.get(0) || condiciones.get(1) || condiciones.get(2))){
+        } else if((!horizontales.isEmpty() || !verticales.isEmpty()) && condicionSimples()){
             huboCambios = true;
             List<Entidad> aRecorrer = verticales.size() > horizontales.size() ? verticales : horizontales;
             for(Entidad entidad : aRecorrer) {
-                if(cursor < 5 && condiciones.get(2))
+                if(cursor < 5 && condicionMatch5())
                     entidad.destruirse(this);
-                else if(cursor < 4 && condiciones.get(1))
+                else if(cursor < 4 && condicionMatch4())
                     entidad.destruirse(this);
-                else if(cursor < 3 && condiciones.get(0))
+                else if(cursor < 3 && condicionMatch3())
                     entidad.destruirse(this);
                 cursor++;
             }
-            if(horizontales.size() > 3 && (condiciones.get(1) || condiciones.get(2)))
+            if(horizontales.size() > 3 && (condicionMatch4() || condicionMatch5()))
                 miFabrica.crearRalladoH(x,y,color,this);
-            else if(verticales.size() > 3 && (condiciones.get(1) || condiciones.get(2)))
+            else if(verticales.size() > 3 && (condicionMatch4() || condicionMatch5()))
                 miFabrica.crearRalladoV(x,y,color,this);
         }
         if(huboCambios)
@@ -260,6 +260,38 @@ public class Tablero{
     }
 
     public Factory generateFactory() {
-        return Utils.skin.equals("Minecraft") ? new MineFactory(miJuego) : new CandyFactory(miJuego); 
+        return Utils.skin.equals("Minecraft") ? new MineFactory(miJuego) : new CandyFactory(miJuego);
+    }
+
+    public boolean condicionMatch3() {
+        return condiciones.get(0);
+    }
+
+    public boolean condicionMatch4() {
+        return condiciones.get(1);
+    }
+
+    public boolean condicionMatch5() {
+        return condiciones.get(2);
+    }
+
+    public boolean condicionMatchL() {
+        return condiciones.get(3);
+    }
+
+    public boolean condicionMatchT() {
+        return condiciones.get(4);
+    }
+
+    public boolean condicionMatchMas() {
+        return condiciones.get(5);
+    }
+
+    public boolean condicionEspeciales() {
+        return (condicionMatchL() || condicionMatchT() || condicionMatchMas());
+    }
+
+    public boolean condicionSimples() {
+        return (condicionMatch3() || condicionMatch4() || condicionMatch5());
     }
 }
