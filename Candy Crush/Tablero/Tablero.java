@@ -85,14 +85,11 @@ public class Tablero{
         Entidad e2 = grilla[posJugadorX][posJugadorY];
         if(e2.esPosibleIntercambiar(e1)) {
             e1.cambiarPosicionCon(e2, this);
-            e1 = grilla[x][y];
-            e2 = grilla[posJugadorX][posJugadorY];
             if (e1.seDestruyeCon(e2)) {
                 e1.destruirse(this);
                 e2.destruirse(this);
                 ordenarColumnas();
-            } else if ((chequeoMovimiento(x, y) | chequeoMovimiento(posJugadorX, posJugadorY))) {
-            } else {
+            } else if (!chequeoMovimiento(x, y) & !chequeoMovimiento(posJugadorX, posJugadorY)) {
                 e1.cambiarPosicionCon(e2, this);
             }
         }
